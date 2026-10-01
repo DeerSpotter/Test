@@ -1,0 +1,29 @@
+{
+  "original_file": "Cable%20Cartridge%20Configurator%20Setup%202.0.0-dev.zip",
+  "original_bytes": 88890054,
+  "original_sha256": "2f830e57eb101959f59c63aed543bb78a60ee1944c6de543de0ac0ecf302faca",
+  "chunk_size_bytes": 25000000,
+  "parts": [
+    {
+      "file": "Cable%20Cartridge%20Configurator%20Setup%202.0.0-dev.zip.part001",
+      "bytes": 25000000,
+      "sha256": "76c5355da01bcdadc6b3ff55d75dda7f3857a55c89586f5c5ac653b4473706b2"
+    },
+    {
+      "file": "Cable%20Cartridge%20Configurator%20Setup%202.0.0-dev.zip.part002",
+      "bytes": 25000000,
+      "sha256": "dd06d0ad6a42d0a978662113a4bf4245ad334a0813884694fb41d42983a56fee"
+    },
+    {
+      "file": "Cable%20Cartridge%20Configurator%20Setup%202.0.0-dev.zip.part003",
+      "bytes": 25000000,
+      "sha256": "ca686caff6e124a5385e6dc39482b35b2f8316f708a9e23ca071529bb92d6b8c"
+    },
+    {
+      "file": "Cable%20Cartridge%20Configurator%20Setup%202.0.0-dev.zip.part004",
+      "bytes": 13890054,
+      "sha256": "2badc802a8e6b63ce1658c4498f96575e6f551a1fbc798183c1a5cd81389e1c1"
+    }
+  ],
+  "reassembly_windows_cmd": "copy /b \"Cable%20Cartridge%20Configurator%20Setup%202.0.0-dev.zip.part001\"+\"Cable%20Cartridge%20Configurator%20Setup%202.0.0-dev.zip.part002\"+\"Cable%20Cartridge%20Configurator%20Setup%202.0.0-dev.zip.part003\"+\"Cable%20Cartridge%20Configurator%20Setup%202.0.0-dev.zip.part004\" \"Cable%20Cartridge%20Configurator%20Setup%202.0.0-dev.zip\""
+}
