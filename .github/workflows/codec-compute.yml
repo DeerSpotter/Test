@@ -1,0 +1,115 @@
+name: Codec compute remapping
+
+on:
+  pull_request:
+    paths:
+      - "experiments/codec-compute/**"
+      - ".github/workflows/codec-compute.yml"
+  workflow_dispatch:
+    inputs:
+      run_nvdec:
+        description: "Also test on a self-hosted NVIDIA GPU runner with nvdec label"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  cpu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run arithmetic proof and preserve real diagnostics
+        id: test
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            if ! command -v ffmpeg; then
+              sudo apt-get update
+              sudo apt-get install -y ffmpeg
+            fi
+            python3 experiments/codec-compute/run.py --mode cpu --out "$RUNNER_TEMP/cpu-result.json"
+          } 2>&1 | tee "$RUNNER_TEMP/cpu-diagnostic.log"
+      - name: Publish automatically updated PR diagnostic
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          TEST_OUTCOME: ${{ steps.test.outcome }}
+        with:
+          script: |
+            const fs=require('fs');
+            const dir=process.env.RUNNER_TEMP;
+            const marker='<!-- codec-compute-ci-result-v1 -->';
+            const log=fs.existsSync(dir+'/cpu-diagnostic.log')?fs.readFileSync(dir+'/cpu-diagnostic.log','utf8'):'No test log was generated. Check the checkout step.';
+            const result=fs.existsSync(dir+'/cpu-result.json')?fs.readFileSync(dir+'/cpu-result.json','utf8'):'No result JSON produced. Inspect the diagnostic below.';
+            const errors=log.split('\n').filter(x=>/error|fail|exception|traceback|assert|cannot|missing|not found/i.test(x));
+            const diagnostic=process.env.TEST_OUTCOME==='success'?log.slice(-2500):[...errors.slice(-30),...log.split('\n').slice(-70)].join('\n').slice(-7500);
+            const body=marker+'\n## Codec compute: '+(process.env.TEST_OUTCOME==='success'?'PASS':'FAIL')+'\n'+
+              'This job tests **CPU software PNG decoding**, not GPU acceleration.\n\n'+
+              '### Result\n~~~json\n'+result.slice(0,4000)+'\n~~~\n'+
+              '### Diagnostic\n~~~text\n'+diagnostic+'\n~~~\n'+
+              '[Workflow run]('+process.env.GITHUB_SERVER_URL+'/'+context.repo.owner+'/'+context.repo.repo+'/actions/runs/'+context.runId+')\n'+
+              'The failed test is not suppressed. This comment is updated, never duplicated.';
+            await core.summary.addRaw(body.replace(marker,'')).write();
+            if(context.eventName!=='pull_request')return;
+            const {owner,repo}=context.repo,issue_number=context.issue.number;
+            const comments=await github.paginate(github.rest.issues.listComments,{owner,repo,issue_number,per_page:100});
+            const previous=comments.find(c=>c.user?.login==='github-actions[bot]'&&c.body?.includes(marker));
+            if(previous)await github.rest.issues.updateComment({owner,repo,comment_id:previous.id,body});
+            else await github.rest.issues.createComment({owner,repo,issue_number,body});
+      - name: Preserve logs and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: codec-cpu
+          path: |
+            ${{ runner.temp }}/cpu-result.json
+            ${{ runner.temp }}/cpu-diagnostic.log
+          if-no-files-found: warn
+
+  nvdec:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_nvdec == true
+    runs-on: [self-hosted, linux, x64, nvdec]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Strict NVIDIA hardware decode probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            command -v nvidia-smi
+            command -v ffmpeg
+            python3 experiments/codec-compute/run.py --mode nvdec --out "$RUNNER_TEMP/nvdec-result.json"
+          } 2>&1 | tee "$RUNNER_TEMP/nvdec-diagnostic.log"
+      - name: Publish diagnostics in workflow summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## NVIDIA video hardware test"
+            echo "~~~text"
+            if [ -f "$RUNNER_TEMP/nvdec-diagnostic.log" ]; then
+              tail -n 100 "$RUNNER_TEMP/nvdec-diagnostic.log"
+            else
+              echo "No log exists; inspect the failing step directly."
+            fi
+            echo "~~~"
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve GPU diagnostic artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: codec-nvdec
+          path: |
+            ${{ runner.temp }}/nvdec-result.json
+            ${{ runner.temp }}/nvdec-diagnostic.log
+          if-no-files-found: warn
