@@ -2,9 +2,11 @@
 
 Can dedicated media engines take on operations that normally run on the CPU while CUDA is busy? The verified compute route encodes operands and H.264 prediction instructions, lets NVDEC reconstruct exact arithmetic results, then uses NVENC to carry results into another stage. The experiments progressed from a software PNG proof to exact addition on NVIDIA's NVDEC hardware, codec feedback chains, comparisons against native AVX2, and an XOR bit-plane mapping.
 
-The [pipeline roles and next experiment](ARCHITECTURE.md) keep NVDEC and NVENC as the arithmetic route. A security engine, if exposed to applications on the test device, could support that route with a separately needed hash, authentication, or encryption task. The security XOR software proof is an exploratory mapping, not a replacement for the verified codec route. Neither a T4 security-hardware result nor a speedup with concurrent CUDA work has been demonstrated.
+The [pipeline roles and next experiment](ARCHITECTURE.md) keep NVDEC and NVENC as the arithmetic route. We can build a custom application API around a supported driver/firmware command if one is found. A security engine could then support the codec route with a separately needed hash, authentication, encryption, or completion signal. A wrapper alone cannot add SEC2 firmware capabilities. The security XOR software proof is an exploratory mapping, not a replacement for the verified codec route. Neither a T4 security-hardware result nor a speedup with concurrent CUDA work has been demonstrated.
 
 [Experiment log, benchmark results, and reproduction commands](RESEARCH.md)
+
+[Blackwell 4000 API Hub run plan](BLACKWELL_API_HUB_RUN.md)
 
 ## Run the quick checks
 
