@@ -18,6 +18,7 @@ The project explores whether a GPU's fixed-function hardware can execute useful 
 | [10. Reused instructions and competing CPU work](results/10-instruction-reuse.json) | Reuse preserved the complete bitstream byte for byte and cut preparation from 134.5 ms to 13.3 ms. The cache started empty for each batch. Eight validated header signatures shared one instruction block. The concurrent test measured both the codec job and a separate CPU job on a two-vCPU VM. |
 | [11. Completion-driven handoffs](results/11-completion-handoffs.json) | Two simultaneous NVENC → NVDEC → NVENC → NVDEC chains produced 256 exact frames in total. Both produced results while the source encoder was still open and before the second half of the input was released. Middle-stage logs confirm CUDA-resident video frames. Our harness wired the routes up front. FFmpeg and the driver handled codec submissions as outputs became ready. |
 | [12. Dedicated optical flow on the T4](results/12-optical-flow.json) | Colab exposed `libnvidia-opticalflow.so.1` on driver 580.82.07. The NVIDIA Optical Flow API returned the exact median motion vector for all four image pairs. Across the four shifts, 91.7–100% of evaluated blocks landed within one pixel of the expected vector. |
+| [13. Security engine XOR adapter, software proof](results/13-security-engine-xor-software.json) | AES-CBC decryption reproduced all 12,288 exact 16-byte XOR results in three cases. Two cases reused the same prepared left operands. This run used OpenSSL on the CPU. Jetson hardware execution is pending. |
 
 ## Latest side-by-side result
 
@@ -44,6 +45,14 @@ The [native probe](benchmarks/optical_flow_known_shift.cpp) used pairs of synthe
 | (4, 12) | (4, 12) | 1,760 / 1,936 | 1,775 / 1,936 |
 
 The harness used CUDA driver calls for context, allocation, and transfers, and `nvOFExecute` for motion estimation. The test measured access and accuracy. Execution time and throughput with another CUDA workload are unmeasured.
+
+## Security engine arithmetic
+
+The [XOR adapter](benchmarks/security_engine_xor.py) prepares each 16-byte left operand `A` as `AES_encrypt(A)` with a fixed public test key. It arranges each pair as `[B, AES_encrypt(A)]` in the CBC input. CBC decryption of the second block decrypts it to `A` and XORs that value with the preceding block `B`. The adapter extracts one XOR result per pair, and the other output block is unused. Prepared left operands can be reused with new right operands.
+
+The reference is direct bytewise CPU XOR. The software run verified 4,096 random pairs, then reused the prepared left side with all-zero and all-one right operands. All 12,288 results matched. This demonstrates bitwise XOR, equivalent to addition without carries, on synthetic operands. Each result needs two CBC input blocks and an AES preparation pass for new left operands.
+
+The Jetson mode requests `ecb-aes-tegra` for preparation and `cbc-aes-tegra` for evaluation by their explicit driver names. It requires an existing Jetson Linux configuration that exposes those drivers through AF_ALG. Newer upstream Linux restricts AF_ALG to software implementations. The workspace attempt exited with status 2 and reported `[Errno 1] Operation not permitted` at the socket operation. Jetson hardware execution, physical engine activity, and timing remain unverified.
 
 ## How to read the results
 
@@ -73,17 +82,21 @@ Use Linux with Python 3.10+, FFmpeg, and, for the AVX2 comparisons, an x86-64 co
 | Instruction reuse and concurrent CPU work | `python3 benchmarks/codec_reuse_concurrency.py --hardware --pairs 512 --repeats 8 --output reuse.json` |
 | Completion-driven handoffs | `python3 benchmarks/codec_completion_chain.py --hardware --frames 128 --output handoffs.json` |
 | Optical flow availability and accuracy | `python3 benchmarks/optical_flow_known_shift.py --output optical-flow.json` |
+| Security engine arithmetic, software proof | `python3 benchmarks/security_engine_xor.py --backend openssl --output security-xor.json` |
+| Security engine arithmetic, Jetson probe | `python3 benchmarks/security_engine_xor.py --backend jetson --output security-xor-jetson.json` |
 
 For the initial software script, also install NumPy, Pillow, and Numba in the test environment. Its output path is configurable here. The probe captures the NVENC error if the hardware is unavailable. The other software-only paths use FFmpeg software codecs when invoked without `--hardware` or with `--mode cpu`, as their command-line help specifies. Each archived JSON distinguishes the available software and hardware records.
 
 The optical flow script requires Linux, `nvidia-smi`, a C++17 compiler, CUDA headers under `/usr/local/cuda/include`, and a driver exposing `libcuda.so.1` and `libnvidia-opticalflow.so.1`. It downloads two public SDK headers pinned to a commit and records their SHA-256 hashes.
+
+Use Python 3.10+ and the `openssl` executable for the security engine software proof. The Jetson mode uses Python's AF_ALG socket API and reports the first backend error on failure.
 
 ## Pending tests, in original order
 
 2. **Profile CUDA compute use in the codec path.** Test NVENC, NVDEC and copy operations with features such as look-ahead and adaptive quantization disabled. Measure any programmable-core activity attributable to the codec path.
 3. **Measure available media-engine capacity while CUDA is busy.** Compare an existing CUDA job alone and alongside codec work. Measure both throughputs in the same window, keeping the codec work on dedicated engines.
 4. **Schedule several queued jobs.** Use completion signals to advance whichever job is ready when multiple jobs compete for an engine. Measure dispatch overhead and verify ordering and results under backpressure.
-5. **Test exposed security hardware when available.** On Jetson Orin, compare supported AES-GCM or SHA-256 hardware offload with CPU execution while the GPU handles other work. The T4 SEC2 research identified firmware duties. Application-accessible crypto on that engine was not verified.
+5. **Test exposed security hardware when available.** On Jetson Orin, verify the AES-CBC XOR adapter and compare preparation, reuse, and host overhead with direct CPU XOR. AES-GCM and SHA-256 are separate options for stream protection. The T4 SEC2 research identified firmware duties. Application-accessible crypto on that engine was not verified.
 
 ## Technical references
 
@@ -91,3 +104,4 @@ The optical flow script requires Linux, `nvidia-smi`, a C++17 compiler, CUDA hea
 - [NVIDIA NVDEC API guide](https://docs.nvidia.com/video-technologies/video-codec-sdk/13.0/nvdec-video-decoder-api-prog-guide/index.html) and [NVENC API guide](https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvenc-video-encoder-api-prog-guide/index.html)
 - [NVIDIA CUDA guidance for overlapping transfers](https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/) and [Optical Flow accelerator capabilities](https://docs.nvidia.com/video-technologies/optical-flow-sdk/nvofa-application-note/index.html)
 - [Jetson Orin security engine capabilities](https://docs.nvidia.com/jetson/archives/r36.5/DeveloperGuide/SO/JetsonOrinSeries.html#security-engine)
+- [NIST SP 800-38A §6.2](https://doi.org/10.6028/NIST.SP.800-38A), [NVIDIA Tegra Security Engine driver notes](https://docs.nvidia.com/jetson/archives/r36.5/DeveloperGuide/SD/Security/DiskEncryption.html#crypto-engine-performance-considerations), and [Linux AF_ALG documentation](https://docs.kernel.org/crypto/userspace-if.html)
