@@ -1,0 +1,70 @@
+{
+  "gpu_and_driver": "Tesla T4, 580.82.07",
+  "sdk_header_commit": "edb50da3cf849840d680249aa6dbef248ebce2ca",
+  "headers_sha256": {
+    "nvOpticalFlowCommon.h": "a83f6045e5c470b35a6c50672f92e082b78d55752fe51cc20eb1a2738be05b9d",
+    "nvOpticalFlowCuda.h": "07defc79637fb9893f2a06204972eaa6bcf9e5bea400c88440439ebaaa39f115"
+  },
+  "api": "NvOFAPICreateInstanceCuda → nvOFExecute",
+  "image_size": 256,
+  "grid": 4,
+  "cases": [
+    {
+      "expected": [
+        0,
+        0
+      ],
+      "median": [
+        0,
+        0
+      ],
+      "blocks": 1936,
+      "exact": 1936,
+      "within_one_pixel": 1936,
+      "passed": true
+    },
+    {
+      "expected": [
+        8,
+        -4
+      ],
+      "median": [
+        8,
+        -4
+      ],
+      "blocks": 1936,
+      "exact": 1933,
+      "within_one_pixel": 1933,
+      "passed": true
+    },
+    {
+      "expected": [
+        -12,
+        8
+      ],
+      "median": [
+        -12,
+        8
+      ],
+      "blocks": 1936,
+      "exact": 1936,
+      "within_one_pixel": 1936,
+      "passed": true
+    },
+    {
+      "expected": [
+        4,
+        12
+      ],
+      "median": [
+        4,
+        12
+      ],
+      "blocks": 1936,
+      "exact": 1760,
+      "within_one_pixel": 1775,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -17,6 +17,7 @@ The project explores whether a GPU's fixed-function hardware can execute useful 
 | [09. GPU copy scheduling](results/09-copy-engine.json) | The native NVDEC interface used CUDA transfers into pinned host buffers. For prepared NVDEC arithmetic, alternating buffers reduced explicit copy wait from 29.4 ms to 1.1 ms and allowed decode submissions with copies pending. Total elapsed time remained about 264 ms. Including preparation, elapsed time went from 408 ms to 397 ms. |
 | [10. Reused instructions and competing CPU work](results/10-instruction-reuse.json) | Reuse preserved the complete bitstream byte for byte and cut preparation from 134.5 ms to 13.3 ms. The cache started empty for each batch. Eight validated header signatures shared one instruction block. The concurrent test measured both the codec job and a separate CPU job on a two-vCPU VM. |
 | [11. Completion-driven handoffs](results/11-completion-handoffs.json) | Two simultaneous NVENC → NVDEC → NVENC → NVDEC chains produced 256 exact frames in total. Both produced results while the source encoder was still open and before the second half of the input was released. Middle-stage logs confirm CUDA-resident video frames. Our harness wired the routes up front. FFmpeg and the driver handled codec submissions as outputs became ready. |
+| [12. Dedicated optical flow on the T4](results/12-optical-flow.json) | Colab exposed `libnvidia-opticalflow.so.1` on driver 580.82.07. The NVIDIA Optical Flow API returned the exact median motion vector for all four image pairs. Across the four shifts, 91.7–100% of evaluated blocks landed within one pixel of the expected vector. |
 
 ## Latest side-by-side result
 
@@ -30,6 +31,19 @@ The table reports medians of eight runs with native NVDEC and alternating pinned
 | NVDEC with the stream prepared ahead | 263.3 ms | 109.8 ms | 265.7 ms | 143.3 |
 
 The concurrent runs had substantial variation. The reusable path came close to the CPU route on an otherwise idle VM. With the competing CPU process, the ordinary decoder plus AVX2 completed the batch sooner and the other process completed more jobs per second. The concurrent hardware experiment with an existing CUDA workload is pending.
+
+## Optical flow accuracy
+
+The [native probe](benchmarks/optical_flow_known_shift.cpp) used pairs of synthetic 256 × 256 grayscale images on the T4. Each second image was a shifted copy. The hardware API returned one vector per 4 × 4 block. The check excluded a 40-pixel border and disabled temporal hints so that each pair was evaluated independently. Passing required both median components to be within 0.5 pixels of the expected shift and at least 90% of evaluated vectors to be within one pixel on both axes.
+
+| Expected shift (x, y) | Median (x, y) | Exact blocks | Blocks within one pixel |
+|---|---|---:|---:|
+| (0, 0) | (0, 0) | 1,936 / 1,936 | 1,936 / 1,936 |
+| (8, −4) | (8, −4) | 1,933 / 1,936 | 1,933 / 1,936 |
+| (−12, 8) | (−12, 8) | 1,936 / 1,936 | 1,936 / 1,936 |
+| (4, 12) | (4, 12) | 1,760 / 1,936 | 1,775 / 1,936 |
+
+The harness used CUDA driver calls for context, allocation, and transfers, and `nvOFExecute` for motion estimation. The test measured access and accuracy. Execution time and throughput with another CUDA workload are unmeasured.
 
 ## How to read the results
 
@@ -58,12 +72,14 @@ Use Linux with Python 3.10+, FFmpeg, and, for the AVX2 comparisons, an x86-64 co
 | Copy scheduling | `python3 benchmarks/codec_copy_benchmark.py --pairs 512 --repeats 6 --output copy.json` |
 | Instruction reuse and concurrent CPU work | `python3 benchmarks/codec_reuse_concurrency.py --hardware --pairs 512 --repeats 8 --output reuse.json` |
 | Completion-driven handoffs | `python3 benchmarks/codec_completion_chain.py --hardware --frames 128 --output handoffs.json` |
+| Optical flow availability and accuracy | `python3 benchmarks/optical_flow_known_shift.py --output optical-flow.json` |
 
 For the initial software script, also install NumPy, Pillow, and Numba in the test environment. Its output path is configurable here. The probe captures the NVENC error if the hardware is unavailable. The other software-only paths use FFmpeg software codecs when invoked without `--hardware` or with `--mode cpu`, as their command-line help specifies. Each archived JSON distinguishes the available software and hardware records.
 
-## Pending tests, in order
+The optical flow script requires Linux, `nvidia-smi`, a C++17 compiler, CUDA headers under `/usr/local/cuda/include`, and a driver exposing `libcuda.so.1` and `libnvidia-opticalflow.so.1`. It downloads two public SDK headers pinned to a commit and records their SHA-256 hashes.
 
-1. **Optical flow on the T4.** Probe for the dedicated NVOFA engine in Colab. Use two synthetic images with a known shift and compare returned motion vectors with that shift.
+## Pending tests, in original order
+
 2. **Profile CUDA compute use in the codec path.** Test NVENC, NVDEC and copy operations with features such as look-ahead and adaptive quantization disabled. Measure any programmable-core activity attributable to the codec path.
 3. **Measure available media-engine capacity while CUDA is busy.** Compare an existing CUDA job alone and alongside codec work. Measure both throughputs in the same window, keeping the codec work on dedicated engines.
 4. **Schedule several queued jobs.** Use completion signals to advance whichever job is ready when multiple jobs compete for an engine. Measure dispatch overhead and verify ordering and results under backpressure.
