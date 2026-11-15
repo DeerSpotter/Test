@@ -1,0 +1,56 @@
+{
+  "execution_diagnostics": {
+    "cpu": {
+      "command": [
+        "/usr/bin/python3",
+        "/content/codec_compute_run.py",
+        "--mode",
+        "cpu",
+        "--out",
+        "/content/cpu_result.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"passed\",\n  \"mode\": \"cpu\",\n  \"operations\": 4096,\n  \"accuracy\": \"exact\",\n  \"wall_ms_including_startup\": 204.455,\n  \"decoder\": \"CPU software PNG\",\n  \"hardware_acceleration\": false\n}\n",
+      "stderr": ""
+    },
+    "nvdec": {
+      "command": [
+        "/usr/bin/python3",
+        "/content/codec_compute_run.py",
+        "--mode",
+        "nvdec",
+        "--out",
+        "/content/nvdec_result.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"passed\",\n  \"mode\": \"nvdec\",\n  \"gpu\": \"Tesla T4, 580.82.07\",\n  \"frames\": 120,\n  \"software_decode_ms\": 213.157,\n  \"hardware_decode_ms\": 1726.69,\n  \"limitation\": \"Hardware VIDEO decode only, not yet non-video arithmetic\"\n}\n",
+      "stderr": ""
+    }
+  },
+  "cpu_result": {
+    "status": "passed",
+    "mode": "cpu",
+    "operations": 4096,
+    "accuracy": "exact",
+    "wall_ms_including_startup": 204.455,
+    "decoder": "CPU software PNG",
+    "hardware_acceleration": false
+  },
+  "nvdec_result": {
+    "status": "passed",
+    "mode": "nvdec",
+    "gpu": "Tesla T4, 580.82.07",
+    "frames": 120,
+    "software_decode_ms": 213.157,
+    "hardware_decode_ms": 1726.69,
+    "limitation": "Hardware VIDEO decode only, not yet non-video arithmetic"
+  },
+  "frame_verification": {
+    "hardware_decoder": "h264_cuvid",
+    "hardware_frames": "cuda",
+    "input_profile": "Constrained Baseline",
+    "cpu_frames": 120,
+    "gpu_frames": 120,
+    "exact_frame_md5_match": true
+  }
+}

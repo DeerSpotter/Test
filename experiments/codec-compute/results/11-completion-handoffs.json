@@ -1,0 +1,89 @@
+{
+  "codec_completion_t4": {
+    "hardware": true,
+    "chains": [
+      {
+        "chain": 0,
+        "frames": 128,
+        "bytes_exact": true,
+        "sha256": "bc473b0d78a6bf29fc9423aae01923e3401efac508650749c0156c5b4fc43c34",
+        "stage_exit_codes": [
+          0,
+          0,
+          0
+        ],
+        "gpu_surface_evidence": [
+          "[graph 0 input from stream 0:0 @ 0x5b46fa59ff40] w:256 h:256 pixfmt:cuda tb:1/1200000 fr:30/1 sar:1/1",
+          "Stream #0:0: Video: h264 (Main), 1 reference frame, cuda(tv, progressive, left), 256x256 (0x0) [SAR 1:1 DAR 1:1], q=2-31, 2000 kb/s, 30 fps, 30 tbn"
+        ],
+        "elapsed_ms": 2734.46,
+        "first_complete_output_ms": 1810.609,
+        "first_output_before_second_input_half": true,
+        "source_encoder_alive_on_first_output": true,
+        "tail_sent_ms": 1902.794
+      },
+      {
+        "chain": 1,
+        "frames": 128,
+        "bytes_exact": true,
+        "sha256": "ccc25b999cf0af905ba665eeef1cb4476ef6c10015ff3029b0fd7a3e7df7bc6e",
+        "stage_exit_codes": [
+          0,
+          0,
+          0
+        ],
+        "gpu_surface_evidence": [
+          "[graph 0 input from stream 0:0 @ 0x587d889f33c0] w:256 h:256 pixfmt:cuda tb:1/1200000 fr:30/1 sar:1/1",
+          "Stream #0:0: Video: h264 (Main), 1 reference frame, cuda(tv, progressive, left), 256x256 (0x0) [SAR 1:1 DAR 1:1], q=2-31, 2000 kb/s, 30 fps, 30 tbn"
+        ],
+        "elapsed_ms": 2741.911,
+        "first_complete_output_ms": 1796.232,
+        "first_output_before_second_input_half": true,
+        "source_encoder_alive_on_first_output": true,
+        "tail_sent_ms": 1863.621
+      }
+    ],
+    "dispatch": "persistent FFmpeg stages connected by OS pipes",
+    "gpu": "Tesla T4, 580.82.07"
+  },
+  "codec_completion_cpu": {
+    "hardware": false,
+    "chains": [
+      {
+        "chain": 0,
+        "frames": 64,
+        "bytes_exact": true,
+        "sha256": "8b422db0c9cd0380c218c79d451b3a3a60062a48efa7a6f456bbcb05a642d259",
+        "stage_exit_codes": [
+          0,
+          0,
+          0
+        ],
+        "gpu_surface_evidence": [],
+        "elapsed_ms": 828.2,
+        "first_complete_output_ms": 720.761,
+        "first_output_before_second_input_half": true,
+        "source_encoder_alive_on_first_output": true,
+        "tail_sent_ms": 745.967
+      },
+      {
+        "chain": 1,
+        "frames": 64,
+        "bytes_exact": true,
+        "sha256": "da4268202eb08b6f5ea88261bacc489cc7ec08ef1b9b797352826b1cadbf0f98",
+        "stage_exit_codes": [
+          0,
+          0,
+          0
+        ],
+        "gpu_surface_evidence": [],
+        "elapsed_ms": 544.44,
+        "first_complete_output_ms": 374.979,
+        "first_output_before_second_input_half": true,
+        "source_encoder_alive_on_first_output": true,
+        "tail_sent_ms": 394.458
+      }
+    ],
+    "dispatch": "persistent FFmpeg stages connected by OS pipes"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "experiment": "NVDEC to NVENC exact XOR byte reconstruction and same-runtime CPU comparison",
+  "source_commit": "16ed5884e4f680d31787f65edb9f38a6ff341a90",
+  "source_sha256": "e394d787496eef8d9b817c59caed82bc02307f5011b9d7ec573957775ea66dda",
+  "hardware": true,
+  "decoder": "h264_cuvid",
+  "encoder": "h264_nvenc",
+  "verification_decoder": "h264 (CPU)",
+  "dimensions": [256, 256],
+  "verified_bit_planes": 24,
+  "verified_xor_bits": 1572864,
+  "exact_16_byte_pairs": {
+    "random": 4096,
+    "reused_left_with_zero": 4096,
+    "reused_left_with_ones": 4096
+  },
+  "output_layout": "one luma plane per bit, LSB first",
+  "ffmpeg_cuda_surface_evidence": [
+    "[graph 0 input from stream 0:0 @ 0x574483270500] w:256 h:256 pixfmt:cuda tb:1/1200000 fr:25/1 sar:1/1"
+  ],
+  "prepared_h264_bytes": 5207669,
+  "encoded_h264_bytes": 2538479,
+  "encoded_sha256": "43c01984ce95ce94a502881be86fa89cfa1445b04f01cc633c8b1df99f0f6025",
+  "verified_pixels_sha256": "199259220ee2feff70bc25bebd35df46a565475c21e276adb9d2b9e06a4d2b18",
+  "reconstructed_bytes_sha256": "d5645517357c01e38e1241cb44263c9c719a361d24f55bd97ccb43bc883ffc7e",
+  "preparation_ms": 1518.741,
+  "decode_then_encode_wall_ms": 829.939,
+  "output_decode_ms": 169.409,
+  "byte_reconstruction_ms": 237.517,
+  "raw_input_to_bytes_ms": 2755.664,
+  "direct_python_xor_median_ms": 11.712,
+  "direct_python_xor_runs_ms": [11.933, 11.712, 11.688, 11.593, 12.301, 12.194, 11.685],
+  "gpu_and_driver": "Tesla T4, 580.82.07",
+  "timing_scope": "Three 65,536-byte XOR outputs. The direct Python XOR oracle runs seven times separately before preparation timing. preparation_ms constructs encoded bit-plane inputs on the CPU. decode_then_encode_wall_ms measures the FFmpeg hardware transcode. output_decode_ms decodes NVENC output using the CPU verification decoder. byte_reconstruction_ms assembles 24 bit-planes into three byte arrays. raw_input_to_bytes_ms includes preparation, transcode, output decode, and reconstruction, but excludes oracle runs and final comparison checks. These are one-run codec timings, not medians. No concurrent CUDA workload was running. Security engine hardware was not used."
+}

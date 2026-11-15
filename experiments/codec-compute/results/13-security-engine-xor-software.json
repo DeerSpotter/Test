@@ -1,0 +1,26 @@
+{
+  "backend": "openssl",
+  "machine": "x86_64",
+  "block_bytes": 16,
+  "pairs_per_case": 4096,
+  "kernel_release": "6.18.57",
+  "checks": [
+    {
+      "case": "random",
+      "exact_pairs": 4096,
+      "passed": true
+    },
+    {
+      "case": "reused_left_with_zero",
+      "exact_pairs": 4096,
+      "passed": true
+    },
+    {
+      "case": "reused_left_with_ones",
+      "exact_pairs": 4096,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "openssl_version": "OpenSSL 3.5.7 9 Jun 2026 (Library: OpenSSL 3.5.7 9 Jun 2026)"
+}

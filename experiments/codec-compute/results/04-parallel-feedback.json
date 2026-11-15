@@ -1,0 +1,1196 @@
+{
+  "codec_feedback_gpu_extract": {
+    "summary": {
+      "gpu": "Tesla T4, 580.82.07",
+      "chains": 4,
+      "hops_per_chain": 3,
+      "all_arithmetic_and_dependencies_verified": true,
+      "identical_serial_and_parallel_routes_and_outputs": true,
+      "average_serial_seconds": 17.4561,
+      "average_parallel_seconds": 9.7995,
+      "speedup": 1.7813,
+      "frame_dimensions": [
+        256,
+        256
+      ]
+    },
+    "trials": [
+      {
+        "summary": {
+          "mode": "serial",
+          "seconds": 17.4493,
+          "host_cpu_seconds": 14.0308,
+          "jobs": 12,
+          "overlapping_subprocess_seconds": 0,
+          "encode_changed_bytes": 0,
+          "distinct_offset_plans": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "nvml_observations": 326,
+          "nvml_both_positive_observations": 0,
+          "nvml_peak_encoder_pct": 0,
+          "nvml_peak_decoder_pct": 0,
+          "nvml_sampling_periods_us": [
+            200000
+          ],
+          "nvml_error": null
+        },
+        "timings": [
+          [
+            0.338,
+            703.355,
+            703.832,
+            1521.159
+          ],
+          [
+            1521.169,
+            2275.363,
+            2275.857,
+            3051.881
+          ],
+          [
+            3051.888,
+            3723.437,
+            3723.833,
+            4479.947
+          ],
+          [
+            4479.957,
+            5175.349,
+            5175.771,
+            5902.573
+          ],
+          [
+            5902.58,
+            6601.352,
+            6601.76,
+            7304.887
+          ],
+          [
+            7304.894,
+            8009.938,
+            8010.275,
+            8769.169
+          ],
+          [
+            8769.178,
+            9485.273,
+            9485.743,
+            10210.408
+          ],
+          [
+            10210.415,
+            10890.32,
+            10890.706,
+            11609.716
+          ],
+          [
+            11609.724,
+            12284.596,
+            12284.99,
+            13007.685
+          ],
+          [
+            13007.697,
+            13754.531,
+            13755.029,
+            14567.352
+          ],
+          [
+            14567.361,
+            15325.425,
+            15325.829,
+            16039.036
+          ],
+          [
+            16039.043,
+            16733.989,
+            16734.343,
+            17449.287
+          ]
+        ]
+      },
+      {
+        "summary": {
+          "mode": "parallel",
+          "seconds": 10.019,
+          "host_cpu_seconds": 12.4785,
+          "jobs": 12,
+          "overlapping_subprocess_seconds": 8.1959,
+          "encode_changed_bytes": 0,
+          "distinct_offset_plans": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "nvml_observations": 185,
+          "nvml_both_positive_observations": 0,
+          "nvml_peak_encoder_pct": 0,
+          "nvml_peak_decoder_pct": 0,
+          "nvml_sampling_periods_us": [
+            200000
+          ],
+          "nvml_error": null
+        },
+        "timings": [
+          [
+            2.719,
+            676.082,
+            676.968,
+            1607.425
+          ],
+          [
+            3124.201,
+            3846.397,
+            4016.135,
+            4816.874
+          ],
+          [
+            5889.791,
+            6567.815,
+            6916.721,
+            7650.293
+          ],
+          [
+            676.147,
+            1528.619,
+            1608.082,
+            2417.231
+          ],
+          [
+            3846.454,
+            4521.111,
+            4817.381,
+            5515.622
+          ],
+          [
+            6567.86,
+            7230.023,
+            7651.043,
+            8491.03
+          ],
+          [
+            1528.662,
+            2324.407,
+            2418.059,
+            3243.628
+          ],
+          [
+            4521.158,
+            5205.244,
+            5516.138,
+            6212.927
+          ],
+          [
+            7230.069,
+            7987.888,
+            8491.557,
+            9300.474
+          ],
+          [
+            2324.452,
+            3124.151,
+            3244.245,
+            4015.564
+          ],
+          [
+            5205.296,
+            5889.754,
+            6213.575,
+            6916.113
+          ],
+          [
+            7987.955,
+            8879.569,
+            9300.964,
+            10018.645
+          ]
+        ]
+      },
+      {
+        "summary": {
+          "mode": "parallel",
+          "seconds": 9.5801,
+          "host_cpu_seconds": 12.8635,
+          "jobs": 12,
+          "overlapping_subprocess_seconds": 7.8089,
+          "encode_changed_bytes": 0,
+          "distinct_offset_plans": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "nvml_observations": 179,
+          "nvml_both_positive_observations": 0,
+          "nvml_peak_encoder_pct": 0,
+          "nvml_peak_decoder_pct": 0,
+          "nvml_sampling_periods_us": [
+            200000
+          ],
+          "nvml_error": null
+        },
+        "timings": [
+          [
+            0.501,
+            674.476,
+            675.308,
+            1670.908
+          ],
+          [
+            3000.882,
+            3688.492,
+            3979.306,
+            4686.007
+          ],
+          [
+            5725.867,
+            6397.471,
+            6807.064,
+            7504.614
+          ],
+          [
+            674.525,
+            1542.487,
+            1671.401,
+            2430.38
+          ],
+          [
+            3688.542,
+            4374.397,
+            4686.486,
+            5395.801
+          ],
+          [
+            6397.514,
+            7098.45,
+            7505.103,
+            8193.756
+          ],
+          [
+            1542.524,
+            2272.926,
+            2430.898,
+            3231.883
+          ],
+          [
+            4374.449,
+            5069.468,
+            5396.286,
+            6086.906
+          ],
+          [
+            7098.491,
+            7795.108,
+            8194.234,
+            8912.437
+          ],
+          [
+            2272.981,
+            3000.832,
+            3232.502,
+            3978.76
+          ],
+          [
+            5069.523,
+            5725.819,
+            6087.423,
+            6806.523
+          ],
+          [
+            7795.145,
+            8489.871,
+            8912.975,
+            9579.837
+          ]
+        ]
+      },
+      {
+        "summary": {
+          "mode": "serial",
+          "seconds": 17.4628,
+          "host_cpu_seconds": 14.388,
+          "jobs": 12,
+          "overlapping_subprocess_seconds": 0,
+          "encode_changed_bytes": 0,
+          "distinct_offset_plans": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "nvml_observations": 327,
+          "nvml_both_positive_observations": 0,
+          "nvml_peak_encoder_pct": 0,
+          "nvml_peak_decoder_pct": 0,
+          "nvml_sampling_periods_us": [
+            200000
+          ],
+          "nvml_error": null
+        },
+        "timings": [
+          [
+            1.36,
+            659.847,
+            660.317,
+            1497.063
+          ],
+          [
+            1497.071,
+            2279.434,
+            2279.892,
+            2988.508
+          ],
+          [
+            2988.514,
+            3700.631,
+            3700.922,
+            4434.169
+          ],
+          [
+            4434.178,
+            5124.933,
+            5125.328,
+            5834.671
+          ],
+          [
+            5834.678,
+            6511.276,
+            6511.686,
+            7222.85
+          ],
+          [
+            7222.857,
+            7888.692,
+            7889.045,
+            8627.571
+          ],
+          [
+            8627.581,
+            9310.412,
+            9310.771,
+            10023.935
+          ],
+          [
+            10023.943,
+            10735.395,
+            10735.752,
+            11468.984
+          ],
+          [
+            11468.992,
+            12157.348,
+            12157.714,
+            12928.002
+          ],
+          [
+            12928.015,
+            13667.814,
+            13668.309,
+            14537.073
+          ],
+          [
+            14537.08,
+            15278.672,
+            15279.079,
+            16042.028
+          ],
+          [
+            16042.035,
+            16737.1,
+            16737.523,
+            17462.796
+          ]
+        ]
+      }
+    ],
+    "timing_fields": [
+      "encode_start_ms",
+      "encode_end_ms",
+      "decode_start_ms",
+      "decode_end_ms"
+    ],
+    "timing_order": "sorted by chain then hop, both zero-based",
+    "offset_plans_in_job_order": [
+      1,
+      3,
+      0,
+      3,
+      3,
+      0,
+      1,
+      2,
+      1,
+      1,
+      1,
+      3
+    ],
+    "parallel_chain_zero_example": [
+      [
+        0,
+        0,
+        1,
+        "6d23886566a465a909bfc39978e09fe831962756f270c8f3b9d0c2ddaeb5305b",
+        "9c8c29f09382f89cd1f0315936800bf5d1db4abd8ecb05e55b838c6d85457cba",
+        "a3818c493f362931f4409eb9749066211c18ec3ef82abb2bf54e87a43a2e3654",
+        2.719,
+        676.082,
+        676.968,
+        1607.425
+      ],
+      [
+        0,
+        1,
+        3,
+        "e789e1fc51f7fbc0094778a3408c466eed43a81ce15a7c250e5efece2c756378",
+        "a3818c493f362931f4409eb9749066211c18ec3ef82abb2bf54e87a43a2e3654",
+        "2c95f9c0f5780322c9a62bede2f653b83a7af9b6b9e6c26675400e9614c7ee37",
+        3124.201,
+        3846.397,
+        4016.135,
+        4816.874
+      ],
+      [
+        0,
+        2,
+        0,
+        "d4c198bfbca569d05377219e044b593192a0935237676a05feaa3f7c100a9df0",
+        "2c95f9c0f5780322c9a62bede2f653b83a7af9b6b9e6c26675400e9614c7ee37",
+        "f5cc6f735c515079f05a52ba6dd4e394dc915112b5ab883253f8303e1111051c",
+        5889.791,
+        6567.815,
+        6916.721,
+        7650.293
+      ]
+    ],
+    "example_fields": [
+      "chain",
+      "hop",
+      "plan",
+      "encoded_sha256",
+      "input_sha256",
+      "output_sha256",
+      "encode_start_ms",
+      "encode_end_ms",
+      "decode_start_ms",
+      "decode_end_ms"
+    ]
+  },
+  "codec_feedback_cpu": {
+    "summary": {
+      "gpu": null,
+      "chains": 4,
+      "hops_per_chain": 3,
+      "all_arithmetic_and_dependencies_verified": true,
+      "identical_serial_and_parallel_routes_and_outputs": true,
+      "average_serial_seconds": 2.4804,
+      "average_parallel_seconds": 1.4884,
+      "speedup": 1.6664,
+      "frame_dimensions": [
+        256,
+        256
+      ]
+    },
+    "trials": [
+      {
+        "summary": {
+          "mode": "serial",
+          "seconds": 2.2468,
+          "host_cpu_seconds": 2.2595,
+          "jobs": 12,
+          "overlapping_subprocess_seconds": 0,
+          "encode_changed_bytes": 0,
+          "distinct_offset_plans": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "nvml_observations": 0,
+          "nvml_both_positive_observations": 0,
+          "nvml_peak_encoder_pct": null,
+          "nvml_peak_decoder_pct": null,
+          "nvml_sampling_periods_us": [],
+          "nvml_error": null
+        },
+        "jobs": [
+          [
+            0,
+            0,
+            3,
+            "97333459d1f84e728bbe3a3b7949d2b6cca20f859f2a3a5bb9c70d65da0f3b71",
+            "9c8c29f09382f89cd1f0315936800bf5d1db4abd8ecb05e55b838c6d85457cba",
+            "16d6e36a74ab677930522d0cf3385acf5a7352929da1d48fa2423f00b7b61691",
+            0.015,
+            90.561,
+            90.721,
+            167.124
+          ],
+          [
+            0,
+            1,
+            1,
+            "3117869dc6c5d08e001a5100f16f80b63903fa840189578d598341ecf0292998",
+            "16d6e36a74ab677930522d0cf3385acf5a7352929da1d48fa2423f00b7b61691",
+            "5e7ef02698334a0cd4008dc58f62c437b07767e843fd0670ef194bdba511a587",
+            167.128,
+            244.128,
+            244.375,
+            316.727
+          ],
+          [
+            0,
+            2,
+            0,
+            "5095d82c29ca86d57af7aee6b88dd5df80ca6e5803d3d68b8c2a4998370d2e9e",
+            "5e7ef02698334a0cd4008dc58f62c437b07767e843fd0670ef194bdba511a587",
+            "b4edaf655f52b5840381068ccad98adfafaba4ecb67b4b73184cc214692a12ca",
+            316.731,
+            404.218,
+            404.442,
+            511.337
+          ],
+          [
+            1,
+            0,
+            2,
+            "36ac6f38150e861355e10f7bfbcfd3767a753c7b2ff26d40d1c280c17b5fa83e",
+            "38034dd3816d6b01748daf0bd8c515fa1ad55aa1629b4b4d45b64dc09eed0181",
+            "475c4e7c71a7380bf927d6c1370b4bf4d96b3941986a43563f5ab1ec9fd0f86d",
+            511.341,
+            578.586,
+            578.759,
+            688.85
+          ],
+          [
+            1,
+            1,
+            0,
+            "10d68c993831657123de04da2a67dc1409e42ad72836cd92ab45ad1e16076739",
+            "475c4e7c71a7380bf927d6c1370b4bf4d96b3941986a43563f5ab1ec9fd0f86d",
+            "f0d9af4a78929e860f1b08a730d438b6a9623883d642e9dded4b1d80826d60b0",
+            688.854,
+            797.047,
+            797.238,
+            897.444
+          ],
+          [
+            1,
+            2,
+            2,
+            "e676dd1ccdd01845afbebc0cf45f2c80dd5276a0c33dcfcc31f4aa7068e4838d",
+            "f0d9af4a78929e860f1b08a730d438b6a9623883d642e9dded4b1d80826d60b0",
+            "c9256f5a8a79375d88c3f5848d9b177f60a901c27f53deb6b572ced4604e6bd4",
+            897.448,
+            975.878,
+            976.092,
+            1194.93
+          ],
+          [
+            2,
+            0,
+            3,
+            "c3843c9a6b815c3c7a5f7e84b72df6867cf69ffa31ebd314b58b1d514f79f3aa",
+            "4ff4326fd8f52e6dcf9874cf63a4c5042495a876901be0032f3d908eba8f72f5",
+            "a7a7cac9c5140500251c4fd84fd4ebaf1d50910e9c4f12f596093ed06588fc88",
+            1194.937,
+            1292.273,
+            1292.568,
+            1373.678
+          ],
+          [
+            2,
+            1,
+            1,
+            "d5e72f47f72b05831dfe07170d100f4919fb6285e7727be160417fb9c8f56458",
+            "a7a7cac9c5140500251c4fd84fd4ebaf1d50910e9c4f12f596093ed06588fc88",
+            "19a74645b9748422d21bd063373355fa8a00080ff86e0a7b3f236b3dec59a729",
+            1373.684,
+            1497.502,
+            1497.833,
+            1604.709
+          ],
+          [
+            2,
+            2,
+            2,
+            "d2e3e28875821045afe615feb0fe6277929af65701bfc49a57754f44189b2ee8",
+            "19a74645b9748422d21bd063373355fa8a00080ff86e0a7b3f236b3dec59a729",
+            "0f106baf3a867abd990d4d96c563f63308b75a31ee7b9aecd52f7d0121707bee",
+            1604.714,
+            1733.595,
+            1733.851,
+            1801.318
+          ],
+          [
+            3,
+            0,
+            2,
+            "ce887b0944abdc3b7cb47637c7000c265665fa0ed8fd2ef4400dfbb4e95ea9d6",
+            "90f1ab1e5666d0b411925ce46f367db840fc9265a4eed6a610d105de1a6f8772",
+            "ff04aa4b527c399d96f6dbfb520c888df591ff48438ba8132aa3bd3f4f314d44",
+            1801.325,
+            1870.16,
+            1870.348,
+            1947.215
+          ],
+          [
+            3,
+            1,
+            2,
+            "a6651f3f9eade83504f0202649874344f7a0e4d62e232509777a54f53fc5fc85",
+            "ff04aa4b527c399d96f6dbfb520c888df591ff48438ba8132aa3bd3f4f314d44",
+            "17638a359a35f6fd887bd396c37be4622c63794f1f3b80665d8f49c3eabb7ba8",
+            1947.22,
+            2026.476,
+            2026.672,
+            2102.647
+          ],
+          [
+            3,
+            2,
+            1,
+            "49413a7b7499d8b9f390e663a08d8c034b3b95f7bb74ee08035f9b99f02b6198",
+            "17638a359a35f6fd887bd396c37be4622c63794f1f3b80665d8f49c3eabb7ba8",
+            "c7c28714a90e2319364259b0ac20cd5277a1aec10272c49daf0c54ff18a7f27a",
+            2102.652,
+            2170.329,
+            2170.496,
+            2246.751
+          ]
+        ],
+        "nvml": []
+      },
+      {
+        "summary": {
+          "mode": "parallel",
+          "seconds": 1.3132,
+          "host_cpu_seconds": 2.2761,
+          "jobs": 12,
+          "overlapping_subprocess_seconds": 0.9785,
+          "encode_changed_bytes": 0,
+          "distinct_offset_plans": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "nvml_observations": 0,
+          "nvml_both_positive_observations": 0,
+          "nvml_peak_encoder_pct": null,
+          "nvml_peak_decoder_pct": null,
+          "nvml_sampling_periods_us": [],
+          "nvml_error": null
+        },
+        "jobs": [
+          [
+            0,
+            0,
+            3,
+            "97333459d1f84e728bbe3a3b7949d2b6cca20f859f2a3a5bb9c70d65da0f3b71",
+            "9c8c29f09382f89cd1f0315936800bf5d1db4abd8ecb05e55b838c6d85457cba",
+            "16d6e36a74ab677930522d0cf3385acf5a7352929da1d48fa2423f00b7b61691",
+            0.648,
+            65.178,
+            65.926,
+            233.597
+          ],
+          [
+            0,
+            1,
+            1,
+            "3117869dc6c5d08e001a5100f16f80b63903fa840189578d598341ecf0292998",
+            "16d6e36a74ab677930522d0cf3385acf5a7352929da1d48fa2423f00b7b61691",
+            "5e7ef02698334a0cd4008dc58f62c437b07767e843fd0670ef194bdba511a587",
+            421.188,
+            491.481,
+            496.077,
+            582.301
+          ],
+          [
+            0,
+            2,
+            0,
+            "5095d82c29ca86d57af7aee6b88dd5df80ca6e5803d3d68b8c2a4998370d2e9e",
+            "5e7ef02698334a0cd4008dc58f62c437b07767e843fd0670ef194bdba511a587",
+            "b4edaf655f52b5840381068ccad98adfafaba4ecb67b4b73184cc214692a12ca",
+            743.199,
+            841.62,
+            842.08,
+            933.323
+          ],
+          [
+            1,
+            0,
+            2,
+            "36ac6f38150e861355e10f7bfbcfd3767a753c7b2ff26d40d1c280c17b5fa83e",
+            "38034dd3816d6b01748daf0bd8c515fa1ad55aa1629b4b4d45b64dc09eed0181",
+            "475c4e7c71a7380bf927d6c1370b4bf4d96b3941986a43563f5ab1ec9fd0f86d",
+            65.24,
+            209.29,
+            233.935,
+            314.408
+          ],
+          [
+            1,
+            1,
+            0,
+            "10d68c993831657123de04da2a67dc1409e42ad72836cd92ab45ad1e16076739",
+            "475c4e7c71a7380bf927d6c1370b4bf4d96b3941986a43563f5ab1ec9fd0f86d",
+            "f0d9af4a78929e860f1b08a730d438b6a9623883d642e9dded4b1d80826d60b0",
+            491.51,
+            582.124,
+            584.954,
+            670.657
+          ],
+          [
+            1,
+            2,
+            2,
+            "e676dd1ccdd01845afbebc0cf45f2c80dd5276a0c33dcfcc31f4aa7068e4838d",
+            "f0d9af4a78929e860f1b08a730d438b6a9623883d642e9dded4b1d80826d60b0",
+            "c9256f5a8a79375d88c3f5848d9b177f60a901c27f53deb6b572ced4604e6bd4",
+            841.647,
+            919.11,
+            933.618,
+            1032.117
+          ],
+          [
+            2,
+            0,
+            3,
+            "c3843c9a6b815c3c7a5f7e84b72df6867cf69ffa31ebd314b58b1d514f79f3aa",
+            "4ff4326fd8f52e6dcf9874cf63a4c5042495a876901be0032f3d908eba8f72f5",
+            "a7a7cac9c5140500251c4fd84fd4ebaf1d50910e9c4f12f596093ed06588fc88",
+            209.326,
+            341.188,
+            341.64,
+            415.803
+          ],
+          [
+            2,
+            1,
+            1,
+            "d5e72f47f72b05831dfe07170d100f4919fb6285e7727be160417fb9c8f56458",
+            "a7a7cac9c5140500251c4fd84fd4ebaf1d50910e9c4f12f596093ed06588fc88",
+            "19a74645b9748422d21bd063373355fa8a00080ff86e0a7b3f236b3dec59a729",
+            582.152,
+            659.638,
+            671.284,
+            746.72
+          ],
+          [
+            2,
+            2,
+            2,
+            "d2e3e28875821045afe615feb0fe6277929af65701bfc49a57754f44189b2ee8",
+            "19a74645b9748422d21bd063373355fa8a00080ff86e0a7b3f236b3dec59a729",
+            "0f106baf3a867abd990d4d96c563f63308b75a31ee7b9aecd52f7d0121707bee",
+            919.18,
+            1016.913,
+            1032.446,
+            1232.938
+          ],
+          [
+            3,
+            0,
+            2,
+            "ce887b0944abdc3b7cb47637c7000c265665fa0ed8fd2ef4400dfbb4e95ea9d6",
+            "90f1ab1e5666d0b411925ce46f367db840fc9265a4eed6a610d105de1a6f8772",
+            "ff04aa4b527c399d96f6dbfb520c888df591ff48438ba8132aa3bd3f4f314d44",
+            341.228,
+            421.163,
+            421.699,
+            495.801
+          ],
+          [
+            3,
+            1,
+            2,
+            "a6651f3f9eade83504f0202649874344f7a0e4d62e232509777a54f53fc5fc85",
+            "ff04aa4b527c399d96f6dbfb520c888df591ff48438ba8132aa3bd3f4f314d44",
+            "17638a359a35f6fd887bd396c37be4622c63794f1f3b80665d8f49c3eabb7ba8",
+            659.666,
+            743.176,
+            747.121,
+            833.568
+          ],
+          [
+            3,
+            2,
+            1,
+            "49413a7b7499d8b9f390e663a08d8c034b3b95f7bb74ee08035f9b99f02b6198",
+            "17638a359a35f6fd887bd396c37be4622c63794f1f3b80665d8f49c3eabb7ba8",
+            "c7c28714a90e2319364259b0ac20cd5277a1aec10272c49daf0c54ff18a7f27a",
+            1016.935,
+            1091.221,
+            1233.192,
+            1312.869
+          ]
+        ],
+        "nvml": []
+      },
+      {
+        "summary": {
+          "mode": "parallel",
+          "seconds": 1.6637,
+          "host_cpu_seconds": 2.5584,
+          "jobs": 12,
+          "overlapping_subprocess_seconds": 0.9255,
+          "encode_changed_bytes": 0,
+          "distinct_offset_plans": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "nvml_observations": 0,
+          "nvml_both_positive_observations": 0,
+          "nvml_peak_encoder_pct": null,
+          "nvml_peak_decoder_pct": null,
+          "nvml_sampling_periods_us": [],
+          "nvml_error": null
+        },
+        "jobs": [
+          [
+            0,
+            0,
+            3,
+            "97333459d1f84e728bbe3a3b7949d2b6cca20f859f2a3a5bb9c70d65da0f3b71",
+            "9c8c29f09382f89cd1f0315936800bf5d1db4abd8ecb05e55b838c6d85457cba",
+            "16d6e36a74ab677930522d0cf3385acf5a7352929da1d48fa2423f00b7b61691",
+            0.21,
+            87.745,
+            88.498,
+            174.182
+          ],
+          [
+            0,
+            1,
+            1,
+            "3117869dc6c5d08e001a5100f16f80b63903fa840189578d598341ecf0292998",
+            "16d6e36a74ab677930522d0cf3385acf5a7352929da1d48fa2423f00b7b61691",
+            "5e7ef02698334a0cd4008dc58f62c437b07767e843fd0670ef194bdba511a587",
+            428.29,
+            659.298,
+            660.567,
+            756.856
+          ],
+          [
+            0,
+            2,
+            0,
+            "5095d82c29ca86d57af7aee6b88dd5df80ca6e5803d3d68b8c2a4998370d2e9e",
+            "5e7ef02698334a0cd4008dc58f62c437b07767e843fd0670ef194bdba511a587",
+            "b4edaf655f52b5840381068ccad98adfafaba4ecb67b4b73184cc214692a12ca",
+            981.234,
+            1061.977,
+            1089.022,
+            1190.366
+          ],
+          [
+            1,
+            0,
+            2,
+            "36ac6f38150e861355e10f7bfbcfd3767a753c7b2ff26d40d1c280c17b5fa83e",
+            "38034dd3816d6b01748daf0bd8c515fa1ad55aa1629b4b4d45b64dc09eed0181",
+            "475c4e7c71a7380bf927d6c1370b4bf4d96b3941986a43563f5ab1ec9fd0f86d",
+            87.77,
+            267.869,
+            268.626,
+            367.633
+          ],
+          [
+            1,
+            1,
+            0,
+            "10d68c993831657123de04da2a67dc1409e42ad72836cd92ab45ad1e16076739",
+            "475c4e7c71a7380bf927d6c1370b4bf4d96b3941986a43563f5ab1ec9fd0f86d",
+            "f0d9af4a78929e860f1b08a730d438b6a9623883d642e9dded4b1d80826d60b0",
+            659.326,
+            735.529,
+            758.379,
+            837.268
+          ],
+          [
+            1,
+            2,
+            2,
+            "e676dd1ccdd01845afbebc0cf45f2c80dd5276a0c33dcfcc31f4aa7068e4838d",
+            "f0d9af4a78929e860f1b08a730d438b6a9623883d642e9dded4b1d80826d60b0",
+            "c9256f5a8a79375d88c3f5848d9b177f60a901c27f53deb6b572ced4604e6bd4",
+            1062.003,
+            1136.823,
+            1190.579,
+            1438.699
+          ],
+          [
+            2,
+            0,
+            3,
+            "c3843c9a6b815c3c7a5f7e84b72df6867cf69ffa31ebd314b58b1d514f79f3aa",
+            "4ff4326fd8f52e6dcf9874cf63a4c5042495a876901be0032f3d908eba8f72f5",
+            "a7a7cac9c5140500251c4fd84fd4ebaf1d50910e9c4f12f596093ed06588fc88",
+            267.899,
+            353.222,
+            367.854,
+            451.624
+          ],
+          [
+            2,
+            1,
+            1,
+            "d5e72f47f72b05831dfe07170d100f4919fb6285e7727be160417fb9c8f56458",
+            "a7a7cac9c5140500251c4fd84fd4ebaf1d50910e9c4f12f596093ed06588fc88",
+            "19a74645b9748422d21bd063373355fa8a00080ff86e0a7b3f236b3dec59a729",
+            735.555,
+            812.696,
+            838.723,
+            914.107
+          ],
+          [
+            2,
+            2,
+            2,
+            "d2e3e28875821045afe615feb0fe6277929af65701bfc49a57754f44189b2ee8",
+            "19a74645b9748422d21bd063373355fa8a00080ff86e0a7b3f236b3dec59a729",
+            "0f106baf3a867abd990d4d96c563f63308b75a31ee7b9aecd52f7d0121707bee",
+            1136.848,
+            1222.831,
+            1439.459,
+            1513.909
+          ],
+          [
+            3,
+            0,
+            2,
+            "ce887b0944abdc3b7cb47637c7000c265665fa0ed8fd2ef4400dfbb4e95ea9d6",
+            "90f1ab1e5666d0b411925ce46f367db840fc9265a4eed6a610d105de1a6f8772",
+            "ff04aa4b527c399d96f6dbfb520c888df591ff48438ba8132aa3bd3f4f314d44",
+            353.252,
+            428.264,
+            454.393,
+            545.951
+          ],
+          [
+            3,
+            1,
+            2,
+            "a6651f3f9eade83504f0202649874344f7a0e4d62e232509777a54f53fc5fc85",
+            "ff04aa4b527c399d96f6dbfb520c888df591ff48438ba8132aa3bd3f4f314d44",
+            "17638a359a35f6fd887bd396c37be4622c63794f1f3b80665d8f49c3eabb7ba8",
+            812.72,
+            981.208,
+            981.538,
+            1088.713
+          ],
+          [
+            3,
+            2,
+            1,
+            "49413a7b7499d8b9f390e663a08d8c034b3b95f7bb74ee08035f9b99f02b6198",
+            "17638a359a35f6fd887bd396c37be4622c63794f1f3b80665d8f49c3eabb7ba8",
+            "c7c28714a90e2319364259b0ac20cd5277a1aec10272c49daf0c54ff18a7f27a",
+            1222.855,
+            1297.191,
+            1515.457,
+            1659.996
+          ]
+        ],
+        "nvml": []
+      },
+      {
+        "summary": {
+          "mode": "serial",
+          "seconds": 2.714,
+          "host_cpu_seconds": 2.7229,
+          "jobs": 12,
+          "overlapping_subprocess_seconds": 0,
+          "encode_changed_bytes": 0,
+          "distinct_offset_plans": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "nvml_observations": 0,
+          "nvml_both_positive_observations": 0,
+          "nvml_peak_encoder_pct": null,
+          "nvml_peak_decoder_pct": null,
+          "nvml_sampling_periods_us": [],
+          "nvml_error": null
+        },
+        "jobs": [
+          [
+            0,
+            0,
+            3,
+            "97333459d1f84e728bbe3a3b7949d2b6cca20f859f2a3a5bb9c70d65da0f3b71",
+            "9c8c29f09382f89cd1f0315936800bf5d1db4abd8ecb05e55b838c6d85457cba",
+            "16d6e36a74ab677930522d0cf3385acf5a7352929da1d48fa2423f00b7b61691",
+            0.017,
+            76.56,
+            76.763,
+            157.049
+          ],
+          [
+            0,
+            1,
+            1,
+            "3117869dc6c5d08e001a5100f16f80b63903fa840189578d598341ecf0292998",
+            "16d6e36a74ab677930522d0cf3385acf5a7352929da1d48fa2423f00b7b61691",
+            "5e7ef02698334a0cd4008dc58f62c437b07767e843fd0670ef194bdba511a587",
+            157.055,
+            227.422,
+            227.595,
+            391.045
+          ],
+          [
+            0,
+            2,
+            0,
+            "5095d82c29ca86d57af7aee6b88dd5df80ca6e5803d3d68b8c2a4998370d2e9e",
+            "5e7ef02698334a0cd4008dc58f62c437b07767e843fd0670ef194bdba511a587",
+            "b4edaf655f52b5840381068ccad98adfafaba4ecb67b4b73184cc214692a12ca",
+            391.052,
+            465.863,
+            466.074,
+            545.515
+          ],
+          [
+            1,
+            0,
+            2,
+            "36ac6f38150e861355e10f7bfbcfd3767a753c7b2ff26d40d1c280c17b5fa83e",
+            "38034dd3816d6b01748daf0bd8c515fa1ad55aa1629b4b4d45b64dc09eed0181",
+            "475c4e7c71a7380bf927d6c1370b4bf4d96b3941986a43563f5ab1ec9fd0f86d",
+            545.524,
+            695.405,
+            695.784,
+            872.015
+          ],
+          [
+            1,
+            1,
+            0,
+            "10d68c993831657123de04da2a67dc1409e42ad72836cd92ab45ad1e16076739",
+            "475c4e7c71a7380bf927d6c1370b4bf4d96b3941986a43563f5ab1ec9fd0f86d",
+            "f0d9af4a78929e860f1b08a730d438b6a9623883d642e9dded4b1d80826d60b0",
+            872.022,
+            955.837,
+            956.092,
+            1145.313
+          ],
+          [
+            1,
+            2,
+            2,
+            "e676dd1ccdd01845afbebc0cf45f2c80dd5276a0c33dcfcc31f4aa7068e4838d",
+            "f0d9af4a78929e860f1b08a730d438b6a9623883d642e9dded4b1d80826d60b0",
+            "c9256f5a8a79375d88c3f5848d9b177f60a901c27f53deb6b572ced4604e6bd4",
+            1145.32,
+            1224.588,
+            1224.785,
+            1403.723
+          ],
+          [
+            2,
+            0,
+            3,
+            "c3843c9a6b815c3c7a5f7e84b72df6867cf69ffa31ebd314b58b1d514f79f3aa",
+            "4ff4326fd8f52e6dcf9874cf63a4c5042495a876901be0032f3d908eba8f72f5",
+            "a7a7cac9c5140500251c4fd84fd4ebaf1d50910e9c4f12f596093ed06588fc88",
+            1403.733,
+            1492.789,
+            1492.983,
+            1583.494
+          ],
+          [
+            2,
+            1,
+            1,
+            "d5e72f47f72b05831dfe07170d100f4919fb6285e7727be160417fb9c8f56458",
+            "a7a7cac9c5140500251c4fd84fd4ebaf1d50910e9c4f12f596093ed06588fc88",
+            "19a74645b9748422d21bd063373355fa8a00080ff86e0a7b3f236b3dec59a729",
+            1583.501,
+            1685.036,
+            1685.66,
+            1826.841
+          ],
+          [
+            2,
+            2,
+            2,
+            "d2e3e28875821045afe615feb0fe6277929af65701bfc49a57754f44189b2ee8",
+            "19a74645b9748422d21bd063373355fa8a00080ff86e0a7b3f236b3dec59a729",
+            "0f106baf3a867abd990d4d96c563f63308b75a31ee7b9aecd52f7d0121707bee",
+            1826.848,
+            2088.952,
+            2089.829,
+            2185.713
+          ],
+          [
+            3,
+            0,
+            2,
+            "ce887b0944abdc3b7cb47637c7000c265665fa0ed8fd2ef4400dfbb4e95ea9d6",
+            "90f1ab1e5666d0b411925ce46f367db840fc9265a4eed6a610d105de1a6f8772",
+            "ff04aa4b527c399d96f6dbfb520c888df591ff48438ba8132aa3bd3f4f314d44",
+            2185.722,
+            2260.524,
+            2260.902,
+            2346.119
+          ],
+          [
+            3,
+            1,
+            2,
+            "a6651f3f9eade83504f0202649874344f7a0e4d62e232509777a54f53fc5fc85",
+            "ff04aa4b527c399d96f6dbfb520c888df591ff48438ba8132aa3bd3f4f314d44",
+            "17638a359a35f6fd887bd396c37be4622c63794f1f3b80665d8f49c3eabb7ba8",
+            2346.126,
+            2450.936,
+            2451.167,
+            2549.098
+          ],
+          [
+            3,
+            2,
+            1,
+            "49413a7b7499d8b9f390e663a08d8c034b3b95f7bb74ee08035f9b99f02b6198",
+            "17638a359a35f6fd887bd396c37be4622c63794f1f3b80665d8f49c3eabb7ba8",
+            "c7c28714a90e2319364259b0ac20cd5277a1aec10272c49daf0c54ff18a7f27a",
+            2549.104,
+            2633.738,
+            2634.305,
+            2714.027
+          ]
+        ],
+        "nvml": []
+      }
+    ],
+    "job_fields": [
+      "chain",
+      "hop",
+      "plan",
+      "encoded_sha256",
+      "input_sha256",
+      "output_sha256",
+      "encode_start_ms",
+      "encode_end_ms",
+      "decode_start_ms",
+      "decode_end_ms"
+    ],
+    "nvml_fields": [
+      "at_ms",
+      "encoder_pct",
+      "encoder_period_us",
+      "decoder_pct",
+      "decoder_period_us"
+    ]
+  }
+}

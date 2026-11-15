@@ -1,0 +1,468 @@
+{
+  "codec_copy_results": {
+    "pairs": 512,
+    "repeats": 6,
+    "luma_sums": 33554432,
+    "avx2_threads": 2,
+    "reported_cuda_async_engines": 3,
+    "all_modes_exact": true,
+    "sha256": "d5b5c6db28910698676868f730124a6570d190a2fe9a98f91182057815e293e6",
+    "measurements": {
+      "cpu_math_blocking": {
+        "median_wall_ms": 274.8057,
+        "median_host_cpu_ms": 143.1815,
+        "median_frame_mapping_ms": 26.7984,
+        "median_copy_sync_wait_ms": 41.7193,
+        "total_submissions_with_copy_pending": 0,
+        "runs": [
+          {
+            "wall_ms": 274.7869,
+            "host_cpu_ms": 135.526,
+            "displayed_frames": 1024,
+            "returned_frames": 1024,
+            "bytes_downloaded": 100663296,
+            "decode_submissions": 1024,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 21.0032,
+            "copy_sync_wait_ms": 44.3354
+          },
+          {
+            "wall_ms": 274.8244,
+            "host_cpu_ms": 103.172,
+            "displayed_frames": 1024,
+            "returned_frames": 1024,
+            "bytes_downloaded": 100663296,
+            "decode_submissions": 1024,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 59.3401,
+            "copy_sync_wait_ms": 22.5579
+          },
+          {
+            "wall_ms": 275.1007,
+            "host_cpu_ms": 166.56,
+            "displayed_frames": 1024,
+            "returned_frames": 1024,
+            "bytes_downloaded": 100663296,
+            "decode_submissions": 1024,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 22.3234,
+            "copy_sync_wait_ms": 39.5209
+          },
+          {
+            "wall_ms": 273.049,
+            "host_cpu_ms": 150.837,
+            "displayed_frames": 1024,
+            "returned_frames": 1024,
+            "bytes_downloaded": 100663296,
+            "decode_submissions": 1024,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 15.6514,
+            "copy_sync_wait_ms": 38.91
+          },
+          {
+            "wall_ms": 272.7159,
+            "host_cpu_ms": 118.038,
+            "displayed_frames": 1024,
+            "returned_frames": 1024,
+            "bytes_downloaded": 100663296,
+            "decode_submissions": 1024,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 37.0084,
+            "copy_sync_wait_ms": 43.9178
+          },
+          {
+            "wall_ms": 276.8034,
+            "host_cpu_ms": 167.119,
+            "displayed_frames": 1024,
+            "returned_frames": 1024,
+            "bytes_downloaded": 100663296,
+            "decode_submissions": 1024,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 31.2735,
+            "copy_sync_wait_ms": 50.0367
+          }
+        ]
+      },
+      "cpu_math_alternating": {
+        "median_wall_ms": 273.4928,
+        "median_host_cpu_ms": 138.51,
+        "median_frame_mapping_ms": 72.1814,
+        "median_copy_sync_wait_ms": 2.0366,
+        "total_submissions_with_copy_pending": 2436,
+        "runs": [
+          {
+            "wall_ms": 273.4461,
+            "host_cpu_ms": 134.163,
+            "displayed_frames": 1024,
+            "returned_frames": 1024,
+            "bytes_downloaded": 100663296,
+            "decode_submissions": 1024,
+            "submissions_with_copy_pending": 498,
+            "frame_mapping_ms": 73.31,
+            "copy_sync_wait_ms": 1.9795
+          },
+          {
+            "wall_ms": 273.5395,
+            "host_cpu_ms": 131.102,
+            "displayed_frames": 1024,
+            "returned_frames": 1024,
+            "bytes_downloaded": 100663296,
+            "decode_submissions": 1024,
+            "submissions_with_copy_pending": 497,
+            "frame_mapping_ms": 73.781,
+            "copy_sync_wait_ms": 2.055
+          },
+          {
+            "wall_ms": 275.1257,
+            "host_cpu_ms": 142.857,
+            "displayed_frames": 1024,
+            "returned_frames": 1024,
+            "bytes_downloaded": 100663296,
+            "decode_submissions": 1024,
+            "submissions_with_copy_pending": 430,
+            "frame_mapping_ms": 80.6848,
+            "copy_sync_wait_ms": 2.0181
+          },
+          {
+            "wall_ms": 273.3408,
+            "host_cpu_ms": 149.008,
+            "displayed_frames": 1024,
+            "returned_frames": 1024,
+            "bytes_downloaded": 100663296,
+            "decode_submissions": 1024,
+            "submissions_with_copy_pending": 410,
+            "frame_mapping_ms": 38.6572,
+            "copy_sync_wait_ms": 2.4306
+          },
+          {
+            "wall_ms": 272.7323,
+            "host_cpu_ms": 132.217,
+            "displayed_frames": 1024,
+            "returned_frames": 1024,
+            "bytes_downloaded": 100663296,
+            "decode_submissions": 1024,
+            "submissions_with_copy_pending": 484,
+            "frame_mapping_ms": 71.0527,
+            "copy_sync_wait_ms": 2.0116
+          },
+          {
+            "wall_ms": 276.8467,
+            "host_cpu_ms": 171.963,
+            "displayed_frames": 1024,
+            "returned_frames": 1024,
+            "bytes_downloaded": 100663296,
+            "decode_submissions": 1024,
+            "submissions_with_copy_pending": 117,
+            "frame_mapping_ms": 60.4651,
+            "copy_sync_wait_ms": 2.351
+          }
+        ]
+      },
+      "nvdec_prepared_blocking": {
+        "median_wall_ms": 263.4516,
+        "median_host_cpu_ms": 99.695,
+        "median_frame_mapping_ms": 70.9284,
+        "median_copy_sync_wait_ms": 29.4481,
+        "total_submissions_with_copy_pending": 0,
+        "runs": [
+          {
+            "wall_ms": 263.1888,
+            "host_cpu_ms": 97.811,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 68.5495,
+            "copy_sync_wait_ms": 31.9743
+          },
+          {
+            "wall_ms": 262.2014,
+            "host_cpu_ms": 94.415,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 66.9888,
+            "copy_sync_wait_ms": 30.3895
+          },
+          {
+            "wall_ms": 263.8918,
+            "host_cpu_ms": 105.872,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 73.3073,
+            "copy_sync_wait_ms": 22.9516
+          },
+          {
+            "wall_ms": 263.7145,
+            "host_cpu_ms": 101.453,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 74.5931,
+            "copy_sync_wait_ms": 25.2642
+          },
+          {
+            "wall_ms": 262.7326,
+            "host_cpu_ms": 98.091,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 67.5782,
+            "copy_sync_wait_ms": 30.7613
+          },
+          {
+            "wall_ms": 516.6356,
+            "host_cpu_ms": 101.299,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 95.6197,
+            "copy_sync_wait_ms": 28.5066
+          }
+        ]
+      },
+      "nvdec_prepared_alternating": {
+        "median_wall_ms": 263.5811,
+        "median_host_cpu_ms": 110.2975,
+        "median_frame_mapping_ms": 71.3627,
+        "median_copy_sync_wait_ms": 1.0562,
+        "total_submissions_with_copy_pending": 1077,
+        "runs": [
+          {
+            "wall_ms": 263.0198,
+            "host_cpu_ms": 103.332,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 288,
+            "frame_mapping_ms": 65.6304,
+            "copy_sync_wait_ms": 1.285
+          },
+          {
+            "wall_ms": 262.7604,
+            "host_cpu_ms": 105.427,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 278,
+            "frame_mapping_ms": 65.2992,
+            "copy_sync_wait_ms": 1.2228
+          },
+          {
+            "wall_ms": 270.2701,
+            "host_cpu_ms": 120.913,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 144,
+            "frame_mapping_ms": 85.5813,
+            "copy_sync_wait_ms": 1.3727
+          },
+          {
+            "wall_ms": 264.1407,
+            "host_cpu_ms": 111.708,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 109,
+            "frame_mapping_ms": 77.0949,
+            "copy_sync_wait_ms": 0.4685
+          },
+          {
+            "wall_ms": 263.0215,
+            "host_cpu_ms": 108.887,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 170,
+            "frame_mapping_ms": 65.4793,
+            "copy_sync_wait_ms": 0.8733
+          },
+          {
+            "wall_ms": 518.451,
+            "host_cpu_ms": 120.705,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 88,
+            "frame_mapping_ms": 104.7758,
+            "copy_sync_wait_ms": 0.8896
+          }
+        ]
+      },
+      "nvdec_with_preparation_blocking": {
+        "median_wall_ms": 407.9936,
+        "median_host_cpu_ms": 244.132,
+        "median_frame_mapping_ms": 78.1833,
+        "median_copy_sync_wait_ms": 26.8288,
+        "total_submissions_with_copy_pending": 0,
+        "runs": [
+          {
+            "wall_ms": 404.033,
+            "host_cpu_ms": 236.607,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 66.8913,
+            "copy_sync_wait_ms": 31.1494
+          },
+          {
+            "wall_ms": 411.9542,
+            "host_cpu_ms": 252.411,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 66.5206,
+            "copy_sync_wait_ms": 28.9559
+          },
+          {
+            "wall_ms": 805.3288,
+            "host_cpu_ms": 403.995,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 99.8568,
+            "copy_sync_wait_ms": 32.2429
+          },
+          {
+            "wall_ms": 395.0515,
+            "host_cpu_ms": 242.291,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 68.7015,
+            "copy_sync_wait_ms": 24.7017
+          },
+          {
+            "wall_ms": 397.2277,
+            "host_cpu_ms": 231.826,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 87.6652,
+            "copy_sync_wait_ms": 22.806
+          },
+          {
+            "wall_ms": 649.6633,
+            "host_cpu_ms": 245.973,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 0,
+            "frame_mapping_ms": 100.7043,
+            "copy_sync_wait_ms": 21.2528
+          }
+        ]
+      },
+      "nvdec_with_preparation_alternating": {
+        "median_wall_ms": 397.1083,
+        "median_host_cpu_ms": 239.9425,
+        "median_frame_mapping_ms": 72.8703,
+        "median_copy_sync_wait_ms": 1.1434,
+        "total_submissions_with_copy_pending": 1740,
+        "runs": [
+          {
+            "wall_ms": 397.3685,
+            "host_cpu_ms": 234.395,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 375,
+            "frame_mapping_ms": 65.7377,
+            "copy_sync_wait_ms": 1.3486
+          },
+          {
+            "wall_ms": 490.7575,
+            "host_cpu_ms": 323.74,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 144,
+            "frame_mapping_ms": 73.8992,
+            "copy_sync_wait_ms": 1.1095
+          },
+          {
+            "wall_ms": 419.209,
+            "host_cpu_ms": 257.242,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 265,
+            "frame_mapping_ms": 77.769,
+            "copy_sync_wait_ms": 0.9009
+          },
+          {
+            "wall_ms": 396.8482,
+            "host_cpu_ms": 245.49,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 131,
+            "frame_mapping_ms": 71.8414,
+            "copy_sync_wait_ms": 0.9569
+          },
+          {
+            "wall_ms": 396.2561,
+            "host_cpu_ms": 229.383,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 420,
+            "frame_mapping_ms": 77.8911,
+            "copy_sync_wait_ms": 1.2852
+          },
+          {
+            "wall_ms": 395.8283,
+            "host_cpu_ms": 233.171,
+            "displayed_frames": 1536,
+            "returned_frames": 512,
+            "bytes_downloaded": 50331648,
+            "decode_submissions": 1536,
+            "submissions_with_copy_pending": 405,
+            "frame_mapping_ms": 63.0661,
+            "copy_sync_wait_ms": 1.1773
+          }
+        ]
+      }
+    },
+    "gpu": "Tesla T4, 580.82.07",
+    "nvidia_header_sha256": {
+      "nvcuvid.h": "3fbcde3f9926eaffff436544ad7d431185f6aac08dbbb53b2d86686ce5b09b61",
+      "cuviddec.h": "08db0887916a1044c9267a0726d83b9d565e3e32667bb68525e329455a9ddec4"
+    }
+  }
+}

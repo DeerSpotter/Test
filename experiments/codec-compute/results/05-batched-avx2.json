@@ -1,0 +1,173 @@
+{
+  "codec_batch_hardware": {
+    "hardware": true,
+    "frames": 512,
+    "passes": 3,
+    "luma_operations": 100663296,
+    "native_avx2": true,
+    "cpu_threads_parallel": 2,
+    "encoded_bytes": 97465,
+    "output_bytes": 50331648,
+    "outputs_exact": true,
+    "sha256": "590a06a12954b2a95c19af11e6e4cae870f219202493f35bf2c4e2fd3d1e1b56",
+    "timings": {
+      "raw_cpu_1_thread": {
+        "runs": [
+          {
+            "wall_ms": 33.5554,
+            "host_cpu_ms": 33.589
+          },
+          {
+            "wall_ms": 40.025,
+            "host_cpu_ms": 39.984
+          },
+          {
+            "wall_ms": 35.0133,
+            "host_cpu_ms": 35.037
+          }
+        ],
+        "median_wall_ms": 35.0133,
+        "median_host_cpu_ms": 35.037
+      },
+      "raw_cpu_up_to_2_threads": {
+        "runs": [
+          {
+            "wall_ms": 33.7972,
+            "host_cpu_ms": 41.446
+          },
+          {
+            "wall_ms": 36.1967,
+            "host_cpu_ms": 40.98
+          },
+          {
+            "wall_ms": 34.1563,
+            "host_cpu_ms": 42.125
+          }
+        ],
+        "median_wall_ms": 34.1563,
+        "median_host_cpu_ms": 41.446
+      },
+      "raw_codec_encode_and_compute": {
+        "runs": [
+          {
+            "wall_ms": 1575.0121,
+            "host_cpu_ms": 1774.345
+          },
+          {
+            "wall_ms": 1613.8545,
+            "host_cpu_ms": 1784.374
+          },
+          {
+            "wall_ms": 1620.7099,
+            "host_cpu_ms": 1646.308
+          }
+        ],
+        "median_wall_ms": 1613.8545,
+        "median_host_cpu_ms": 1774.345
+      },
+      "encoded_decode_then_cpu": {
+        "runs": [
+          {
+            "wall_ms": 714.7011,
+            "host_cpu_ms": 864.166
+          },
+          {
+            "wall_ms": 723.1357,
+            "host_cpu_ms": 877.623
+          },
+          {
+            "wall_ms": 1068.7425,
+            "host_cpu_ms": 800.737
+          }
+        ],
+        "median_wall_ms": 723.1357,
+        "median_host_cpu_ms": 864.166
+      },
+      "encoded_decode_and_compute": {
+        "runs": [
+          {
+            "wall_ms": 951.4071,
+            "host_cpu_ms": 1009.093
+          },
+          {
+            "wall_ms": 959.6775,
+            "host_cpu_ms": 1057.453
+          },
+          {
+            "wall_ms": 1283.4965,
+            "host_cpu_ms": 1045.032
+          }
+        ],
+        "median_wall_ms": 959.6775,
+        "median_host_cpu_ms": 1045.032
+      }
+    },
+    "cpu_model": "Intel(R) Xeon(R) CPU @ 2.00GHz",
+    "gpu": "Tesla T4, 580.82.07"
+  },
+  "codec_batch_cpu_smoke": {
+    "hardware": false,
+    "frames": 8,
+    "passes": 3,
+    "luma_operations": 1572864,
+    "native_avx2": true,
+    "cpu_threads_parallel": 2,
+    "encoded_bytes": 1560,
+    "output_bytes": 786432,
+    "outputs_exact": true,
+    "sha256": "0c06c6ae245a640e5337d04c207c123acc2e6ec30813f11890e47530b16b14f4",
+    "timings": {
+      "raw_cpu_1_thread": {
+        "runs": [
+          {
+            "wall_ms": 0.1442,
+            "host_cpu_ms": 0.171
+          }
+        ],
+        "median_wall_ms": 0.1442,
+        "median_host_cpu_ms": 0.171
+      },
+      "raw_cpu_up_to_2_threads": {
+        "runs": [
+          {
+            "wall_ms": 2.6484,
+            "host_cpu_ms": 2.656
+          }
+        ],
+        "median_wall_ms": 2.6484,
+        "median_host_cpu_ms": 2.656
+      },
+      "raw_codec_encode_and_compute": {
+        "runs": [
+          {
+            "wall_ms": 176.2769,
+            "host_cpu_ms": 199.194
+          }
+        ],
+        "median_wall_ms": 176.2769,
+        "median_host_cpu_ms": 199.194
+      },
+      "encoded_decode_then_cpu": {
+        "runs": [
+          {
+            "wall_ms": 241.0498,
+            "host_cpu_ms": 240.657
+          }
+        ],
+        "median_wall_ms": 241.0498,
+        "median_host_cpu_ms": 240.657
+      },
+      "encoded_decode_and_compute": {
+        "runs": [
+          {
+            "wall_ms": 136.6525,
+            "host_cpu_ms": 151.017
+          }
+        ],
+        "median_wall_ms": 136.6525,
+        "median_host_cpu_ms": 151.017
+      }
+    },
+    "cpu_model": "INTEL(R) XEON(R) PLATINUM 8573C"
+  }
+}
