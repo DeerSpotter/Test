@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import json
 import random
+import statistics
 import subprocess
 from pathlib import Path
 from time import perf_counter
@@ -109,20 +110,43 @@ def verify_test(hardware):
              ("reused_left_with_ones", b"\xff" * len(left)))
     if len(left) != LUMA or WIDTH % 16 or HEIGHT % 16:
         raise AssertionError("The fixture requires one operand byte per luma position")
-    expected = []
+    cpu_runs = []
+    for _ in range(7):
+        cpu_start = perf_counter()
+        direct_outputs = tuple(bytes(a ^ b for a, b in zip(left, right, strict=True))
+                               for _, right in cases)
+        cpu_runs.append((perf_counter() - cpu_start) * 1000)
     groups = []
     start = perf_counter()
     for _, right in cases:
-        direct = bytes(a ^ b for a, b in zip(left, right, strict=True))
         for table in BIT_PLANES:
             groups.append(program_xor(left.translate(table), right.translate(table)))
-            expected.append(direct.translate(table) + NEUTRAL_CHROMA)
     stream = b"".join(groups)
     preparation = perf_counter() - start
     encoded, cuda_input, elapsed = transcode(stream, hardware)
+    decode_start = perf_counter()
     verified = run(FFMPEG + ["-c:v", "h264", "-f", "h264", "-i", "pipe:0",
                              "-fps_mode", "passthrough", "-pix_fmt", "yuv420p",
                              "-threads:v", "1", "-f", "rawvideo", "pipe:1"], encoded)
+    output_decode_ms = (perf_counter() - decode_start) * 1000
+    reconstruction_start = perf_counter()
+    reconstructed = []
+    for case_index in range(len(cases)):
+        output = bytearray(LUMA)
+        for bit in range(len(BIT_PLANES)):
+            offset = (case_index * len(BIT_PLANES) + bit) * LENGTH
+            for position, sample in enumerate(verified[offset:offset + LUMA]):
+                if sample == 255:
+                    output[position] |= 1 << bit
+                elif sample != 0:
+                    raise AssertionError("Nonbinary output in XOR bit-plane")
+        reconstructed.append(bytes(output))
+    reconstruction_ms = (perf_counter() - reconstruction_start) * 1000
+    raw_input_to_bytes_ms = (perf_counter() - start) * 1000
+    for (name, _), actual, direct in zip(cases, reconstructed, direct_outputs, strict=True):
+        verify(f"Reconstructed XOR bytes: {name}", actual, direct)
+    expected = [direct.translate(table) + NEUTRAL_CHROMA
+                for direct in direct_outputs for table in BIT_PLANES]
     verify("Decoded pixels of the re-encoded XOR planes", verified, b"".join(expected))
     if len(verified) != len(expected) * LENGTH:
         raise AssertionError("Unexpected encoded frame count")
@@ -141,8 +165,14 @@ def verify_test(hardware):
         "encoded_h264_bytes": len(encoded),
         "encoded_sha256": hashlib.sha256(encoded).hexdigest(),
         "verified_pixels_sha256": hashlib.sha256(verified).hexdigest(),
+        "reconstructed_bytes_sha256": hashlib.sha256(b"".join(reconstructed)).hexdigest(),
         "preparation_ms": round(preparation * 1000, 3),
         "decode_then_encode_wall_ms": round(elapsed * 1000, 3),
+        "output_decode_ms": round(output_decode_ms, 3),
+        "byte_reconstruction_ms": round(reconstruction_ms, 3),
+        "raw_input_to_bytes_ms": round(raw_input_to_bytes_ms, 3),
+        "direct_python_xor_median_ms": round(statistics.median(cpu_runs), 3),
+        "direct_python_xor_runs_ms": [round(value, 3) for value in cpu_runs],
     }
     if hardware:
         result["gpu_and_driver"] = run(["nvidia-smi", "--query-gpu=name,driver_version",
