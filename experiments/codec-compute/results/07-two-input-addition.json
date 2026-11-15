@@ -1,0 +1,107 @@
+{
+  "codec_two_input_gpu": {
+    "encoder": "h264_nvenc",
+    "decoder": "h264_cuvid with CUDA output",
+    "both_encoder_inputs_exact": true,
+    "both_b_picture_results_exact": true,
+    "distinct_operand_pairs": 256,
+    "clipped_sums": 17664,
+    "dimensions": [
+      256,
+      256
+    ],
+    "reference_picture_order_counts": [
+      0,
+      2
+    ],
+    "reference_slice_types": [
+      2,
+      0
+    ],
+    "result_picture_order_count": 1,
+    "allowed_reference_pictures": 4,
+    "saturating_sum": {
+      "weights": [
+        2,
+        2
+      ],
+      "luma_values": 65536,
+      "examples": {
+        "(1, 24)": 25,
+        "(24, 112)": 136,
+        "(255, 255)": 255,
+        "(0, 0)": 0
+      },
+      "output_sha256": "248c9a1b9290a8cf6b722e7aa7a875d3abb740d8f1475241b4d2db9dc7697b8f",
+      "stream_sha256": "84de32b9d1fd30af40cd5ab3b49c6a621ef418e59aceca3596dd9d0d413e32e8"
+    },
+    "rounded_average_control": {
+      "weights": [
+        1,
+        1
+      ],
+      "luma_values": 65536,
+      "examples": {
+        "(1, 24)": 13,
+        "(24, 112)": 68,
+        "(255, 255)": 255,
+        "(0, 0)": 0
+      },
+      "output_sha256": "c6f5bea4d1cedbf3269dc3117b3c754651d0756907a66f82b28b245ca8f0a662",
+      "stream_sha256": "49737b4358a9c54e1dda9166490b254852b5512509db812f2ba42ef512e89799"
+    },
+    "gpu": "Tesla T4, 580.82.07"
+  },
+  "codec_two_input_cpu": {
+    "encoder": "libx264",
+    "decoder": "software h264",
+    "both_encoder_inputs_exact": true,
+    "both_b_picture_results_exact": true,
+    "distinct_operand_pairs": 256,
+    "clipped_sums": 17664,
+    "dimensions": [
+      256,
+      256
+    ],
+    "reference_picture_order_counts": [
+      0,
+      2
+    ],
+    "reference_slice_types": [
+      2,
+      0
+    ],
+    "result_picture_order_count": 1,
+    "allowed_reference_pictures": 2,
+    "saturating_sum": {
+      "weights": [
+        2,
+        2
+      ],
+      "luma_values": 65536,
+      "examples": {
+        "(1, 24)": 25,
+        "(24, 112)": 136,
+        "(255, 255)": 255,
+        "(0, 0)": 0
+      },
+      "output_sha256": "248c9a1b9290a8cf6b722e7aa7a875d3abb740d8f1475241b4d2db9dc7697b8f",
+      "stream_sha256": "7b1c60057d81a9acf1d98a7fa54eeb919814cedd6ac48737c7d481e5caf42a06"
+    },
+    "rounded_average_control": {
+      "weights": [
+        1,
+        1
+      ],
+      "luma_values": 65536,
+      "examples": {
+        "(1, 24)": 13,
+        "(24, 112)": 68,
+        "(255, 255)": 255,
+        "(0, 0)": 0
+      },
+      "output_sha256": "c6f5bea4d1cedbf3269dc3117b3c754651d0756907a66f82b28b245ca8f0a662",
+      "stream_sha256": "a532e9adf7923e3ef50513ea3634d1c5f4bb6b8a1e90a8f01b96a9cc78f75424"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "weighted_codec_cpu_result": {
+    "encoder": "libx264",
+    "decoder": "h264 (CPU)",
+    "luma_values": 65536,
+    "signed_offsets_per_macroblock_row": [
+      0,
+      19,
+      -37,
+      63,
+      -128,
+      127,
+      -1,
+      1
+    ],
+    "anchor_input_mismatches": 0,
+    "low_clips": 8192,
+    "high_clips": 8192,
+    "exact_match_including_chroma": true,
+    "zero_offset_control_exact": true,
+    "reference_sha256": "9c8c29f09382f89cd1f0315936800bf5d1db4abd8ecb05e55b838c6d85457cba",
+    "result_sha256": "38636c4b3ed8f642213044384d925fa3282fa1b00390b37576d3d89572900e6d",
+    "stream_sha256": "7119137b236592f1525c85aa6db1b54e61b39332eae85082daf21fc728a63fb8"
+  },
+  "weighted_codec_gpu_result": {
+    "encoder": "h264_nvenc",
+    "decoder": "h264_cuvid (CUDA output required)",
+    "luma_values": 65536,
+    "signed_offsets_per_macroblock_row": [
+      0,
+      19,
+      -37,
+      63,
+      -128,
+      127,
+      -1,
+      1
+    ],
+    "anchor_input_mismatches": 0,
+    "low_clips": 8192,
+    "high_clips": 8192,
+    "exact_match_including_chroma": true,
+    "zero_offset_control_exact": true,
+    "reference_sha256": "9c8c29f09382f89cd1f0315936800bf5d1db4abd8ecb05e55b838c6d85457cba",
+    "result_sha256": "38636c4b3ed8f642213044384d925fa3282fa1b00390b37576d3d89572900e6d",
+    "stream_sha256": "d9089e0c6d1a44d2fe1c79dc0b3723ae67233420d8cdfbf4efb7544fd69a9bbf",
+    "gpu_output_sha256": "38636c4b3ed8f642213044384d925fa3282fa1b00390b37576d3d89572900e6d",
+    "gpu": "Tesla T4, 580.82.07"
+  },
+  "initial_nvenc_error": "Command exit 234: ffmpeg -nostdin -hide_banner -loglevel error -xerror -f rawvideo -pix_fmt yuv420p -s 128x128 -r 30 -i pipe:0 -frames:v 1 -c:v h264_nvenc -profile:v main -bf 0 -g 30 -refs 1 -preset p4 -rc constqp -qp 1 -zerolatency 1 -f h264 pipe:1\n[h264_nvenc @ 0x584a35dfb440] InitializeEncoder failed: invalid param (8): Frame Dimension less than the minimum supported value.\n[vost#0:0/h264_nvenc @ 0x584a35dfb040] Error while opening encoder - maybe incorrect parameters such as bit_rate, rate, width or height.\nError while filtering: Invalid argument\n[out#0/h264 @ 0x584a35df9d40] Nothing was written into output file, because at least one of its streams received no packets.\n"
+}

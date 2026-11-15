@@ -1,0 +1,277 @@
+{
+  "codec_two_input_speed_t4": {
+    "hardware": true,
+    "pairs": 512,
+    "luma_sums": 33554432,
+    "avx2": true,
+    "max_cpu_threads": 2,
+    "all_outputs_exact": true,
+    "encoded_operands_exact": true,
+    "output_sha256": "d5b5c6db28910698676868f730124a6570d190a2fe9a98f91182057815e293e6",
+    "raw_input_bytes": 100663296,
+    "encoded_operand_bytes": 191292,
+    "encoded_programmed_bytes": 384828,
+    "output_bytes": 50331648,
+    "timings": {
+      "raw_avx2_1_thread": {
+        "runs": [
+          {
+            "wall_ms": 34.4355,
+            "host_cpu_ms": 34.465
+          },
+          {
+            "wall_ms": 38.096,
+            "host_cpu_ms": 38.119
+          },
+          {
+            "wall_ms": 36.6907,
+            "host_cpu_ms": 36.71
+          },
+          {
+            "wall_ms": 37.595,
+            "host_cpu_ms": 37.617
+          },
+          {
+            "wall_ms": 36.9921,
+            "host_cpu_ms": 37
+          },
+          {
+            "wall_ms": 45.7008,
+            "host_cpu_ms": 45.618
+          }
+        ],
+        "median_wall_ms": 37.2935,
+        "median_host_cpu_ms": 37.3085
+      },
+      "raw_avx2_2_threads": {
+        "runs": [
+          {
+            "wall_ms": 52.4857,
+            "host_cpu_ms": 60.46
+          },
+          {
+            "wall_ms": 35.61,
+            "host_cpu_ms": 45.524
+          },
+          {
+            "wall_ms": 34.6553,
+            "host_cpu_ms": 44.169
+          },
+          {
+            "wall_ms": 35.7682,
+            "host_cpu_ms": 45.222
+          },
+          {
+            "wall_ms": 35.883,
+            "host_cpu_ms": 45.913
+          },
+          {
+            "wall_ms": 44.7468,
+            "host_cpu_ms": 47.919
+          }
+        ],
+        "median_wall_ms": 35.8256,
+        "median_host_cpu_ms": 45.7185
+      },
+      "raw_nvenc_then_nvdec_sum": {
+        "runs": [
+          {
+            "wall_ms": 2199.0462,
+            "host_cpu_ms": 2095.605
+          },
+          {
+            "wall_ms": 2025.8206,
+            "host_cpu_ms": 2121.418
+          },
+          {
+            "wall_ms": 2010.2513,
+            "host_cpu_ms": 2108.468
+          },
+          {
+            "wall_ms": 1771.6044,
+            "host_cpu_ms": 2050.884
+          },
+          {
+            "wall_ms": 2127.4488,
+            "host_cpu_ms": 2190.462
+          },
+          {
+            "wall_ms": 2115.6356,
+            "host_cpu_ms": 2213.906
+          }
+        ],
+        "median_wall_ms": 2070.7281,
+        "median_host_cpu_ms": 2114.943
+      },
+      "encoded_nvdec_then_avx2": {
+        "runs": [
+          {
+            "wall_ms": 1144.5199,
+            "host_cpu_ms": 1057.03
+          },
+          {
+            "wall_ms": 1037.8086,
+            "host_cpu_ms": 1163.158
+          },
+          {
+            "wall_ms": 1127.7191,
+            "host_cpu_ms": 1212.378
+          },
+          {
+            "wall_ms": 1129.3886,
+            "host_cpu_ms": 1213.318
+          },
+          {
+            "wall_ms": 1188.7982,
+            "host_cpu_ms": 1127.035
+          },
+          {
+            "wall_ms": 1048.4782,
+            "host_cpu_ms": 1185.712
+          }
+        ],
+        "median_wall_ms": 1128.5539,
+        "median_host_cpu_ms": 1174.435
+      },
+      "encoded_nvdec_sum_with_packing": {
+        "runs": [
+          {
+            "wall_ms": 1308.731,
+            "host_cpu_ms": 1337.694
+          },
+          {
+            "wall_ms": 1152.978,
+            "host_cpu_ms": 1192.318
+          },
+          {
+            "wall_ms": 1315.9248,
+            "host_cpu_ms": 1141.417
+          },
+          {
+            "wall_ms": 1148.2914,
+            "host_cpu_ms": 1192.521
+          },
+          {
+            "wall_ms": 1108.9319,
+            "host_cpu_ms": 1144.608
+          },
+          {
+            "wall_ms": 1152.9613,
+            "host_cpu_ms": 1190.572
+          }
+        ],
+        "median_wall_ms": 1152.9697,
+        "median_host_cpu_ms": 1191.445
+      },
+      "encoded_nvdec_sum_prepacked": {
+        "runs": [
+          {
+            "wall_ms": 987.8539,
+            "host_cpu_ms": 1033.684
+          },
+          {
+            "wall_ms": 988.5355,
+            "host_cpu_ms": 1037.875
+          },
+          {
+            "wall_ms": 1051.296,
+            "host_cpu_ms": 987.765
+          },
+          {
+            "wall_ms": 988.2697,
+            "host_cpu_ms": 1040.8
+          },
+          {
+            "wall_ms": 990.6116,
+            "host_cpu_ms": 1014.828
+          },
+          {
+            "wall_ms": 1069.6466,
+            "host_cpu_ms": 932.097
+          }
+        ],
+        "median_wall_ms": 989.5735,
+        "median_host_cpu_ms": 1024.256
+      }
+    },
+    "gpu": "Tesla T4, 580.82.07",
+    "cpu": "Intel(R) Xeon(R) CPU @ 2.00GHz"
+  },
+  "codec_two_input_speed_cpu_smoke": {
+    "hardware": false,
+    "pairs": 8,
+    "luma_sums": 524288,
+    "avx2": true,
+    "max_cpu_threads": 2,
+    "all_outputs_exact": true,
+    "encoded_operands_exact": true,
+    "output_sha256": "781345f3982a24abc7785bca97836f413e1917ec05539da8f0f3a3088d709856",
+    "raw_input_bytes": 1572864,
+    "encoded_operand_bytes": 3295,
+    "encoded_programmed_bytes": 6311,
+    "output_bytes": 786432,
+    "timings": {
+      "raw_avx2_1_thread": {
+        "runs": [
+          {
+            "wall_ms": 0.168,
+            "host_cpu_ms": 0.187
+          }
+        ],
+        "median_wall_ms": 0.168,
+        "median_host_cpu_ms": 0.187
+      },
+      "raw_avx2_2_threads": {
+        "runs": [
+          {
+            "wall_ms": 0.1744,
+            "host_cpu_ms": 0.189
+          }
+        ],
+        "median_wall_ms": 0.1744,
+        "median_host_cpu_ms": 0.189
+      },
+      "raw_nvenc_then_nvdec_sum": {
+        "runs": [
+          {
+            "wall_ms": 247.3321,
+            "host_cpu_ms": 267.757
+          }
+        ],
+        "median_wall_ms": 247.3321,
+        "median_host_cpu_ms": 267.757
+      },
+      "encoded_nvdec_then_avx2": {
+        "runs": [
+          {
+            "wall_ms": 89.1202,
+            "host_cpu_ms": 91.31
+          }
+        ],
+        "median_wall_ms": 89.1202,
+        "median_host_cpu_ms": 91.31
+      },
+      "encoded_nvdec_sum_with_packing": {
+        "runs": [
+          {
+            "wall_ms": 82.5172,
+            "host_cpu_ms": 81.69
+          }
+        ],
+        "median_wall_ms": 82.5172,
+        "median_host_cpu_ms": 81.69
+      },
+      "encoded_nvdec_sum_prepacked": {
+        "runs": [
+          {
+            "wall_ms": 81.3174,
+            "host_cpu_ms": 82.327
+          }
+        ],
+        "median_wall_ms": 81.3174,
+        "median_host_cpu_ms": 82.327
+      }
+    },
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C"
+  }
+}

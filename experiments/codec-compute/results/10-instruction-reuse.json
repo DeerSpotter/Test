@@ -1,0 +1,521 @@
+{
+  "codec_reuse_t4": {
+    "pairs": 512,
+    "sums": 33554432,
+    "prep": {
+      "pair_count": 512,
+      "instructions_generated": 8,
+      "reused_pairs": 504,
+      "validated_signatures": 8,
+      "distinct_instruction_blocks": 1,
+      "byte_identical": true,
+      "stream_bytes": 384828,
+      "original_ms": [
+        137.09036700038268,
+        133.09297300020262,
+        132.01906199992663,
+        134.94996200006426,
+        149.09550200081867,
+        134.07770300000266,
+        132.70661299975473,
+        135.38490799965075
+      ],
+      "reuse_ms": [
+        15.251958000590093,
+        13.273577999825648,
+        15.52513899969199,
+        13.041478000559437,
+        13.317629000084708,
+        13.847764000274765,
+        13.075267000203894,
+        13.085729000522406
+      ],
+      "median_original_ms": 134.51383250003346,
+      "median_reuse_ms": 13.295603499955178
+    },
+    "reference_sha256": "d5b5c6db28910698676868f730124a6570d190a2fe9a98f91182057815e293e6",
+    "hardware": true,
+    "gpu": "Tesla T4, 580.82.07",
+    "available_logical_cpus": 2,
+    "tests": {
+      "idle": {
+        "decode_then_avx2": {
+          "median_wall_ms": 272.9512,
+          "median_host_cpu_ms": 137.04149999999998,
+          "runs": [
+            {
+              "wall_ms": 277.4212,
+              "host_cpu_ms": 153.167,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 272.4687,
+              "host_cpu_ms": 136.752,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 272.9903,
+              "host_cpu_ms": 135.622,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 272.9121,
+              "host_cpu_ms": 135.521,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 272.9002,
+              "host_cpu_ms": 153.995,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 272.8514,
+              "host_cpu_ms": 153.36,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 275.5697,
+              "host_cpu_ms": 137.331,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 276.0972,
+              "host_cpu_ms": 96.057,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            }
+          ]
+        },
+        "nvdec_rebuild": {
+          "median_wall_ms": 398.93555000000003,
+          "median_host_cpu_ms": 249.705,
+          "runs": [
+            {
+              "wall_ms": 396.0558,
+              "host_cpu_ms": 246.419,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 397.9612,
+              "host_cpu_ms": 242.972,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 396.4585,
+              "host_cpu_ms": 234.234,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 401.1091,
+              "host_cpu_ms": 256.128,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 398.3562,
+              "host_cpu_ms": 252.991,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 399.5149,
+              "host_cpu_ms": 242.516,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 510.1159,
+              "host_cpu_ms": 362.103,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 539.6687,
+              "host_cpu_ms": 391.14,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            }
+          ]
+        },
+        "nvdec_reuse": {
+          "median_wall_ms": 276.7704,
+          "median_host_cpu_ms": 126.65549999999999,
+          "runs": [
+            {
+              "wall_ms": 278.7579,
+              "host_cpu_ms": 130.267,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 276.2969,
+              "host_cpu_ms": 111.995,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 276.7837,
+              "host_cpu_ms": 121.91,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 276.5732,
+              "host_cpu_ms": 124.533,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 277.8364,
+              "host_cpu_ms": 125.359,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 276.7571,
+              "host_cpu_ms": 127.952,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 276.7169,
+              "host_cpu_ms": 130.58,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 295.8308,
+              "host_cpu_ms": 133.432,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            }
+          ]
+        },
+        "nvdec_prebuilt": {
+          "median_wall_ms": 263.3372,
+          "median_host_cpu_ms": 109.77850000000001,
+          "runs": [
+            {
+              "wall_ms": 263.4552,
+              "host_cpu_ms": 112.946,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 263.2824,
+              "host_cpu_ms": 100.151,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 263.0826,
+              "host_cpu_ms": 110.176,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 263.392,
+              "host_cpu_ms": 109.25,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 262.6626,
+              "host_cpu_ms": 119.617,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 262.593,
+              "host_cpu_ms": 117.174,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 264.7325,
+              "host_cpu_ms": 104.77,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            },
+            {
+              "wall_ms": 265.9408,
+              "host_cpu_ms": 109.381,
+              "background_hashes": null,
+              "background_hashes_per_s": null
+            }
+          ]
+        }
+      },
+      "one_cpu_worker": {
+        "decode_then_avx2": {
+          "median_wall_ms": 277.853,
+          "median_host_cpu_ms": 124.02699999999999,
+          "median_background_hashes_per_s": 178.7365,
+          "runs": [
+            {
+              "wall_ms": 275.7908,
+              "host_cpu_ms": 119.26,
+              "background_hashes": 51,
+              "background_hashes_per_s": 184.9228
+            },
+            {
+              "wall_ms": 277.7566,
+              "host_cpu_ms": 124.189,
+              "background_hashes": 53,
+              "background_hashes_per_s": 190.8146
+            },
+            {
+              "wall_ms": 277.1426,
+              "host_cpu_ms": 125.684,
+              "background_hashes": 53,
+              "background_hashes_per_s": 191.2373
+            },
+            {
+              "wall_ms": 275.9658,
+              "host_cpu_ms": 123.865,
+              "background_hashes": 50,
+              "background_hashes_per_s": 181.1819
+            },
+            {
+              "wall_ms": 281.2421,
+              "host_cpu_ms": 114.417,
+              "background_hashes": 32,
+              "background_hashes_per_s": 113.781
+            },
+            {
+              "wall_ms": 305.6651,
+              "host_cpu_ms": 98.705,
+              "background_hashes": 25,
+              "background_hashes_per_s": 81.7889
+            },
+            {
+              "wall_ms": 279.6125,
+              "host_cpu_ms": 135.685,
+              "background_hashes": 46,
+              "background_hashes_per_s": 164.5134
+            },
+            {
+              "wall_ms": 277.9494,
+              "host_cpu_ms": 130.817,
+              "background_hashes": 49,
+              "background_hashes_per_s": 176.2911
+            }
+          ]
+        },
+        "nvdec_rebuild": {
+          "median_wall_ms": 664.0407,
+          "median_host_cpu_ms": 380.0565,
+          "median_background_hashes_per_s": 139.37045,
+          "runs": [
+            {
+              "wall_ms": 795.6752,
+              "host_cpu_ms": 381.815,
+              "background_hashes": 126,
+              "background_hashes_per_s": 158.3561
+            },
+            {
+              "wall_ms": 530.5233,
+              "host_cpu_ms": 378.6,
+              "background_hashes": 71,
+              "background_hashes_per_s": 133.8301
+            },
+            {
+              "wall_ms": 533.0258,
+              "host_cpu_ms": 366.529,
+              "background_hashes": 70,
+              "background_hashes_per_s": 131.3257
+            },
+            {
+              "wall_ms": 531.8081,
+              "host_cpu_ms": 382.527,
+              "background_hashes": 69,
+              "background_hashes_per_s": 129.7461
+            },
+            {
+              "wall_ms": 786.6906,
+              "host_cpu_ms": 361.028,
+              "background_hashes": 114,
+              "background_hashes_per_s": 144.9108
+            },
+            {
+              "wall_ms": 541.3908,
+              "host_cpu_ms": 365.4,
+              "background_hashes": 62,
+              "background_hashes_per_s": 114.5199
+            },
+            {
+              "wall_ms": 791.2816,
+              "host_cpu_ms": 382.569,
+              "background_hashes": 122,
+              "background_hashes_per_s": 154.1803
+            },
+            {
+              "wall_ms": 787.041,
+              "host_cpu_ms": 381.513,
+              "background_hashes": 124,
+              "background_hashes_per_s": 157.5521
+            }
+          ]
+        },
+        "nvdec_reuse": {
+          "median_wall_ms": 419.95705,
+          "median_host_cpu_ms": 136.32850000000002,
+          "median_background_hashes_per_s": 141.2712,
+          "runs": [
+            {
+              "wall_ms": 290.608,
+              "host_cpu_ms": 137.518,
+              "background_hashes": 43,
+              "background_hashes_per_s": 147.9656
+            },
+            {
+              "wall_ms": 290.7734,
+              "host_cpu_ms": 140.572,
+              "background_hashes": 40,
+              "background_hashes_per_s": 137.5641
+            },
+            {
+              "wall_ms": 289.6986,
+              "host_cpu_ms": 130.699,
+              "background_hashes": 42,
+              "background_hashes_per_s": 144.9783
+            },
+            {
+              "wall_ms": 555.352,
+              "host_cpu_ms": 146.58,
+              "background_hashes": 96,
+              "background_hashes_per_s": 172.8633
+            },
+            {
+              "wall_ms": 293.147,
+              "host_cpu_ms": 111.342,
+              "background_hashes": 32,
+              "background_hashes_per_s": 109.1603
+            },
+            {
+              "wall_ms": 563.1412,
+              "host_cpu_ms": 135.139,
+              "background_hashes": 57,
+              "background_hashes_per_s": 101.2179
+            },
+            {
+              "wall_ms": 589.8836,
+              "host_cpu_ms": 124.891,
+              "background_hashes": 54,
+              "background_hashes_per_s": 91.5435
+            },
+            {
+              "wall_ms": 546.7671,
+              "host_cpu_ms": 144.297,
+              "background_hashes": 95,
+              "background_hashes_per_s": 173.7486
+            }
+          ]
+        },
+        "nvdec_prebuilt": {
+          "median_wall_ms": 265.65485,
+          "median_host_cpu_ms": 107.72999999999999,
+          "median_background_hashes_per_s": 143.26600000000002,
+          "runs": [
+            {
+              "wall_ms": 266.2114,
+              "host_cpu_ms": 116.219,
+              "background_hashes": 37,
+              "background_hashes_per_s": 138.9873
+            },
+            {
+              "wall_ms": 264.3266,
+              "host_cpu_ms": 114.669,
+              "background_hashes": 39,
+              "background_hashes_per_s": 147.5447
+            },
+            {
+              "wall_ms": 263.5863,
+              "host_cpu_ms": 103.385,
+              "background_hashes": 42,
+              "background_hashes_per_s": 159.3406
+            },
+            {
+              "wall_ms": 263.7516,
+              "host_cpu_ms": 105.363,
+              "background_hashes": 41,
+              "background_hashes_per_s": 155.4493
+            },
+            {
+              "wall_ms": 265.0983,
+              "host_cpu_ms": 89.732,
+              "background_hashes": 30,
+              "background_hashes_per_s": 113.1656
+            },
+            {
+              "wall_ms": 531.4644,
+              "host_cpu_ms": 105.001,
+              "background_hashes": 46,
+              "background_hashes_per_s": 86.5533
+            },
+            {
+              "wall_ms": 527.2281,
+              "host_cpu_ms": 116.35,
+              "background_hashes": 53,
+              "background_hashes_per_s": 100.5257
+            },
+            {
+              "wall_ms": 516.9528,
+              "host_cpu_ms": 110.097,
+              "background_hashes": 90,
+              "background_hashes_per_s": 174.0971
+            }
+          ]
+        }
+      }
+    },
+    "nvidia_header_sha256": {
+      "nvcuvid.h": "3fbcde3f9926eaffff436544ad7d431185f6aac08dbbb53b2d86686ce5b09b61",
+      "cuviddec.h": "08db0887916a1044c9267a0726d83b9d565e3e32667bb68525e329455a9ddec4"
+    },
+    "all_decoded_bytes_exact": true
+  },
+  "codec_reuse_cpu": {
+    "pairs": 512,
+    "sums": 33554432,
+    "prep": {
+      "pair_count": 512,
+      "instructions_generated": 8,
+      "reused_pairs": 504,
+      "validated_signatures": 8,
+      "distinct_instruction_blocks": 1,
+      "byte_identical": true,
+      "stream_bytes": 363710,
+      "original_ms": [
+        86.30290099972626,
+        113.21583799963264,
+        88.21757600071578,
+        88.16964399920835,
+        89.62580899969907,
+        82.80625399947894
+      ],
+      "reuse_ms": [
+        8.314162999340624,
+        10.088402000292263,
+        7.738938999864331,
+        8.025178000025335,
+        6.975749000048381,
+        9.264330000405607
+      ],
+      "median_original_ms": 88.19360999996206,
+      "median_reuse_ms": 8.16967049968298
+    },
+    "reference_sha256": "d5b5c6db28910698676868f730124a6570d190a2fe9a98f91182057815e293e6",
+    "hardware": false
+  }
+}

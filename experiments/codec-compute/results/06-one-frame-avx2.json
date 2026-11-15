@@ -1,0 +1,907 @@
+{
+  "codec_one_frame_hardware": {
+    "hardware": true,
+    "frames": 512,
+    "luma_operations": 33554432,
+    "avx2": true,
+    "cpu_threads": 2,
+    "outputs_exact": true,
+    "output_sha256": "f43caae0daea9f9fae6053b9341cc523ee45923db5ab9c1a0aede74027e0d41d",
+    "anchor_bytes": 97465,
+    "weighted_bytes": 157113,
+    "timings": {
+      "plain_decode": {
+        "runs": [
+          {
+            "wall_ms": 739.7417,
+            "host_cpu_ms": 870.085
+          },
+          {
+            "wall_ms": 709.8263,
+            "host_cpu_ms": 847.122
+          },
+          {
+            "wall_ms": 730.1664,
+            "host_cpu_ms": 886.004
+          },
+          {
+            "wall_ms": 714.1911,
+            "host_cpu_ms": 851.568
+          },
+          {
+            "wall_ms": 835.0232,
+            "host_cpu_ms": 964.102
+          },
+          {
+            "wall_ms": 731.5731,
+            "host_cpu_ms": 864.447
+          },
+          {
+            "wall_ms": 709.5454,
+            "host_cpu_ms": 830.224
+          },
+          {
+            "wall_ms": 706.9423,
+            "host_cpu_ms": 805.105
+          }
+        ],
+        "median_wall_ms": 722.1788,
+        "median_host_cpu_ms": 858.0075
+      },
+      "decode_then_avx2": {
+        "runs": [
+          {
+            "wall_ms": 824.3426,
+            "host_cpu_ms": 994.607
+          },
+          {
+            "wall_ms": 1098.7886,
+            "host_cpu_ms": 842.892
+          },
+          {
+            "wall_ms": 785.1714,
+            "host_cpu_ms": 925.427
+          },
+          {
+            "wall_ms": 742.387,
+            "host_cpu_ms": 885.539
+          },
+          {
+            "wall_ms": 1163.7744,
+            "host_cpu_ms": 849.699
+          },
+          {
+            "wall_ms": 786.7522,
+            "host_cpu_ms": 890.966
+          },
+          {
+            "wall_ms": 783.7882,
+            "host_cpu_ms": 924.011
+          },
+          {
+            "wall_ms": 756.5745,
+            "host_cpu_ms": 909.857
+          }
+        ],
+        "median_wall_ms": 785.9618,
+        "median_host_cpu_ms": 900.4115
+      },
+      "weighted_nvdec_with_packing": {
+        "runs": [
+          {
+            "wall_ms": 1073.476,
+            "host_cpu_ms": 1018.363
+          },
+          {
+            "wall_ms": 1038.1834,
+            "host_cpu_ms": 1003.571
+          },
+          {
+            "wall_ms": 971.0776,
+            "host_cpu_ms": 943.739
+          },
+          {
+            "wall_ms": 1016.0935,
+            "host_cpu_ms": 1005.44
+          },
+          {
+            "wall_ms": 1111.7338,
+            "host_cpu_ms": 894.588
+          },
+          {
+            "wall_ms": 1012.1628,
+            "host_cpu_ms": 994.623
+          },
+          {
+            "wall_ms": 739.2202,
+            "host_cpu_ms": 965.311
+          },
+          {
+            "wall_ms": 1040.4813,
+            "host_cpu_ms": 893.197
+          }
+        ],
+        "median_wall_ms": 1027.1384,
+        "median_host_cpu_ms": 979.967
+      },
+      "weighted_nvdec_prepacked": {
+        "runs": [
+          {
+            "wall_ms": 1052.9406,
+            "host_cpu_ms": 842.063
+          },
+          {
+            "wall_ms": 708.8551,
+            "host_cpu_ms": 909.732
+          },
+          {
+            "wall_ms": 707.968,
+            "host_cpu_ms": 924.448
+          },
+          {
+            "wall_ms": 981.2509,
+            "host_cpu_ms": 960.594
+          },
+          {
+            "wall_ms": 1022.6041,
+            "host_cpu_ms": 960.079
+          },
+          {
+            "wall_ms": 993.2401,
+            "host_cpu_ms": 973.288
+          },
+          {
+            "wall_ms": 720.8634,
+            "host_cpu_ms": 941.391
+          },
+          {
+            "wall_ms": 743.7637,
+            "host_cpu_ms": 958.228
+          }
+        ],
+        "median_wall_ms": 862.5073,
+        "median_host_cpu_ms": 949.8095
+      }
+    },
+    "gpu": "Tesla T4, 580.82.07"
+  },
+  "codec_one_frame_cpu_smoke": {
+    "hardware": false,
+    "frames": 8,
+    "luma_operations": 524288,
+    "avx2": true,
+    "cpu_threads": 2,
+    "outputs_exact": true,
+    "output_sha256": "636a271f7664a1cfe645fc6a303f70f9a0f45853d3883b679bd717c0afb57855",
+    "anchor_bytes": 1560,
+    "weighted_bytes": 2464,
+    "timings": {
+      "plain_decode": {
+        "runs": [
+          {
+            "wall_ms": 124.6907,
+            "host_cpu_ms": 111.813
+          }
+        ],
+        "median_wall_ms": 124.6907,
+        "median_host_cpu_ms": 111.813
+      },
+      "decode_then_avx2": {
+        "runs": [
+          {
+            "wall_ms": 103.4118,
+            "host_cpu_ms": 106.626
+          }
+        ],
+        "median_wall_ms": 103.4118,
+        "median_host_cpu_ms": 106.626
+      },
+      "weighted_nvdec_with_packing": {
+        "runs": [
+          {
+            "wall_ms": 108.7488,
+            "host_cpu_ms": 108.675
+          }
+        ],
+        "median_wall_ms": 108.7488,
+        "median_host_cpu_ms": 108.675
+      },
+      "weighted_nvdec_prepacked": {
+        "runs": [
+          {
+            "wall_ms": 99.5345,
+            "host_cpu_ms": 105.303
+          }
+        ],
+        "median_wall_ms": 99.5345,
+        "median_host_cpu_ms": 105.303
+      }
+    }
+  },
+  "three_offsets_fusion_check": {
+    "full_byte_range": {
+      "sequences": 32,
+      "exactly_collapsible": 8,
+      "cases": [
+        {
+          "starting_plan": 0,
+          "band": 0,
+          "original_offsets": [
+            0,
+            1,
+            -16
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 0,
+          "band": 1,
+          "original_offsets": [
+            19,
+            -1,
+            32
+          ],
+          "equivalent_single_offsets": [
+            50
+          ]
+        },
+        {
+          "starting_plan": 0,
+          "band": 2,
+          "original_offsets": [
+            -37,
+            7,
+            0
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 0,
+          "band": 3,
+          "original_offsets": [
+            63,
+            -17,
+            -24
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 0,
+          "band": 4,
+          "original_offsets": [
+            -128,
+            31,
+            8
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 0,
+          "band": 5,
+          "original_offsets": [
+            127,
+            -41,
+            -8
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 0,
+          "band": 6,
+          "original_offsets": [
+            -1,
+            53,
+            16
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 0,
+          "band": 7,
+          "original_offsets": [
+            1,
+            -67,
+            40
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 1,
+          "band": 0,
+          "original_offsets": [
+            1,
+            -16,
+            9
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 1,
+          "band": 1,
+          "original_offsets": [
+            -1,
+            32,
+            33
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 1,
+          "band": 2,
+          "original_offsets": [
+            7,
+            0,
+            -21
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 1,
+          "band": 3,
+          "original_offsets": [
+            -17,
+            -24,
+            45
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 1,
+          "band": 4,
+          "original_offsets": [
+            31,
+            8,
+            -57
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 1,
+          "band": 5,
+          "original_offsets": [
+            -41,
+            -8,
+            0
+          ],
+          "equivalent_single_offsets": [
+            -49
+          ]
+        },
+        {
+          "starting_plan": 1,
+          "band": 6,
+          "original_offsets": [
+            53,
+            16,
+            3
+          ],
+          "equivalent_single_offsets": [
+            72
+          ]
+        },
+        {
+          "starting_plan": 1,
+          "band": 7,
+          "original_offsets": [
+            -67,
+            40,
+            -3
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 2,
+          "band": 0,
+          "original_offsets": [
+            -16,
+            9,
+            0
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 2,
+          "band": 1,
+          "original_offsets": [
+            32,
+            33,
+            19
+          ],
+          "equivalent_single_offsets": [
+            84
+          ]
+        },
+        {
+          "starting_plan": 2,
+          "band": 2,
+          "original_offsets": [
+            0,
+            -21,
+            -37
+          ],
+          "equivalent_single_offsets": [
+            -58
+          ]
+        },
+        {
+          "starting_plan": 2,
+          "band": 3,
+          "original_offsets": [
+            -24,
+            45,
+            63
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 2,
+          "band": 4,
+          "original_offsets": [
+            8,
+            -57,
+            -128
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 2,
+          "band": 5,
+          "original_offsets": [
+            -8,
+            0,
+            127
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 2,
+          "band": 6,
+          "original_offsets": [
+            16,
+            3,
+            -1
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 2,
+          "band": 7,
+          "original_offsets": [
+            40,
+            -3,
+            1
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 3,
+          "band": 0,
+          "original_offsets": [
+            9,
+            0,
+            1
+          ],
+          "equivalent_single_offsets": [
+            10
+          ]
+        },
+        {
+          "starting_plan": 3,
+          "band": 1,
+          "original_offsets": [
+            33,
+            19,
+            -1
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 3,
+          "band": 2,
+          "original_offsets": [
+            -21,
+            -37,
+            7
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 3,
+          "band": 3,
+          "original_offsets": [
+            45,
+            63,
+            -17
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 3,
+          "band": 4,
+          "original_offsets": [
+            -57,
+            -128,
+            31
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 3,
+          "band": 5,
+          "original_offsets": [
+            0,
+            127,
+            -41
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 3,
+          "band": 6,
+          "original_offsets": [
+            3,
+            -1,
+            53
+          ],
+          "equivalent_single_offsets": [
+            55
+          ]
+        },
+        {
+          "starting_plan": 3,
+          "band": 7,
+          "original_offsets": [
+            -3,
+            1,
+            -67
+          ],
+          "equivalent_single_offsets": [
+            -69
+          ]
+        }
+      ]
+    },
+    "fixture_levels": {
+      "sequences": 32,
+      "exactly_collapsible": 8,
+      "cases": [
+        {
+          "starting_plan": 0,
+          "band": 0,
+          "original_offsets": [
+            0,
+            1,
+            -16
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 0,
+          "band": 1,
+          "original_offsets": [
+            19,
+            -1,
+            32
+          ],
+          "equivalent_single_offsets": [
+            50
+          ]
+        },
+        {
+          "starting_plan": 0,
+          "band": 2,
+          "original_offsets": [
+            -37,
+            7,
+            0
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 0,
+          "band": 3,
+          "original_offsets": [
+            63,
+            -17,
+            -24
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 0,
+          "band": 4,
+          "original_offsets": [
+            -128,
+            31,
+            8
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 0,
+          "band": 5,
+          "original_offsets": [
+            127,
+            -41,
+            -8
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 0,
+          "band": 6,
+          "original_offsets": [
+            -1,
+            53,
+            16
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 0,
+          "band": 7,
+          "original_offsets": [
+            1,
+            -67,
+            40
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 1,
+          "band": 0,
+          "original_offsets": [
+            1,
+            -16,
+            9
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 1,
+          "band": 1,
+          "original_offsets": [
+            -1,
+            32,
+            33
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 1,
+          "band": 2,
+          "original_offsets": [
+            7,
+            0,
+            -21
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 1,
+          "band": 3,
+          "original_offsets": [
+            -17,
+            -24,
+            45
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 1,
+          "band": 4,
+          "original_offsets": [
+            31,
+            8,
+            -57
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 1,
+          "band": 5,
+          "original_offsets": [
+            -41,
+            -8,
+            0
+          ],
+          "equivalent_single_offsets": [
+            -49
+          ]
+        },
+        {
+          "starting_plan": 1,
+          "band": 6,
+          "original_offsets": [
+            53,
+            16,
+            3
+          ],
+          "equivalent_single_offsets": [
+            72
+          ]
+        },
+        {
+          "starting_plan": 1,
+          "band": 7,
+          "original_offsets": [
+            -67,
+            40,
+            -3
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 2,
+          "band": 0,
+          "original_offsets": [
+            -16,
+            9,
+            0
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 2,
+          "band": 1,
+          "original_offsets": [
+            32,
+            33,
+            19
+          ],
+          "equivalent_single_offsets": [
+            84
+          ]
+        },
+        {
+          "starting_plan": 2,
+          "band": 2,
+          "original_offsets": [
+            0,
+            -21,
+            -37
+          ],
+          "equivalent_single_offsets": [
+            -58
+          ]
+        },
+        {
+          "starting_plan": 2,
+          "band": 3,
+          "original_offsets": [
+            -24,
+            45,
+            63
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 2,
+          "band": 4,
+          "original_offsets": [
+            8,
+            -57,
+            -128
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 2,
+          "band": 5,
+          "original_offsets": [
+            -8,
+            0,
+            127
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 2,
+          "band": 6,
+          "original_offsets": [
+            16,
+            3,
+            -1
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 2,
+          "band": 7,
+          "original_offsets": [
+            40,
+            -3,
+            1
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 3,
+          "band": 0,
+          "original_offsets": [
+            9,
+            0,
+            1
+          ],
+          "equivalent_single_offsets": [
+            10
+          ]
+        },
+        {
+          "starting_plan": 3,
+          "band": 1,
+          "original_offsets": [
+            33,
+            19,
+            -1
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 3,
+          "band": 2,
+          "original_offsets": [
+            -21,
+            -37,
+            7
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 3,
+          "band": 3,
+          "original_offsets": [
+            45,
+            63,
+            -17
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 3,
+          "band": 4,
+          "original_offsets": [
+            -57,
+            -128,
+            31
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 3,
+          "band": 5,
+          "original_offsets": [
+            0,
+            127,
+            -41
+          ],
+          "equivalent_single_offsets": []
+        },
+        {
+          "starting_plan": 3,
+          "band": 6,
+          "original_offsets": [
+            3,
+            -1,
+            53
+          ],
+          "equivalent_single_offsets": [
+            55
+          ]
+        },
+        {
+          "starting_plan": 3,
+          "band": 7,
+          "original_offsets": [
+            -3,
+            1,
+            -67
+          ],
+          "equivalent_single_offsets": [
+            -69
+          ]
+        }
+      ]
+    }
+  }
+}
