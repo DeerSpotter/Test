@@ -19,6 +19,7 @@ The project explores whether a GPU's fixed-function hardware can execute useful 
 | [11. Completion-driven handoffs](results/11-completion-handoffs.json) | Two simultaneous NVENC → NVDEC → NVENC → NVDEC chains produced 256 exact frames in total. Both produced results while the source encoder was still open and before the second half of the input was released. Middle-stage logs confirm CUDA-resident video frames. Our harness wired the routes up front. FFmpeg and the driver handled codec submissions as outputs became ready. |
 | [12. Dedicated optical flow on the T4](results/12-optical-flow.json) | Colab exposed `libnvidia-opticalflow.so.1` on driver 580.82.07. The NVIDIA Optical Flow API returned the exact median motion vector for all four image pairs. Across the four shifts, 91.7–100% of evaluated blocks landed within one pixel of the expected vector. |
 | [13. Security engine XOR adapter, software proof](results/13-security-engine-xor-software.json) | AES-CBC decryption reproduced all 12,288 exact 16-byte XOR results in three cases. Two cases reused the same prepared left operands. This run used OpenSSL on the CPU. Jetson hardware execution is pending. |
+| [14. NVDEC-to-NVENC XOR on the T4](results/14-nvdec-nvenc-xor-t4.json) | `h264_cuvid` decoded CUDA-resident 256 × 256 surfaces and `h264_nvenc` encoded the computed bit-planes. The CPU verification decoder confirmed all 24 output planes exactly: 1,572,864 XOR bit results across random, zero, and all-one second operands. Constructing the encoded test inputs on the CPU took 1,574 ms; the decode-to-encode FFmpeg path took 844 ms. This validates correctness of the codec mapping, not a speedup over CPU XOR. |
 
 ## Latest side-by-side result
 
@@ -84,6 +85,7 @@ Use Linux with Python 3.10+, FFmpeg, and, for the AVX2 comparisons, an x86-64 co
 | Optical flow availability and accuracy | `python3 benchmarks/optical_flow_known_shift.py --output optical-flow.json` |
 | Security engine arithmetic, software proof | `python3 benchmarks/security_engine_xor.py --backend openssl --output security-xor.json` |
 | Security engine arithmetic, Jetson probe | `python3 benchmarks/security_engine_xor.py --backend jetson --output security-xor-jetson.json` |
+| XOR bit-plane computation through NVDEC then NVENC | `python3 benchmarks/codec_xor_decode_encode.py --hardware --output xor-t4.json` |
 
 For the initial software script, also install NumPy, Pillow, and Numba in the test environment. Its output path is configurable here. The probe captures the NVENC error if the hardware is unavailable. The other software-only paths use FFmpeg software codecs when invoked without `--hardware` or with `--mode cpu`, as their command-line help specifies. Each archived JSON distinguishes the available software and hardware records.
 
