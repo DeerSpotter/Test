@@ -17,18 +17,23 @@ python3 --version
 
 Confirm `h264_nvenc` and `h264_cuvid` are listed. Record OS, available CUDA headers, whether this is a container or remote session, and whether the user can build native code. A missing library or permission is a capability result, not a successful hardware test. Do not infer SEC2 application access from `nvidia-smi` alone.
 
-## 2. Reproduce the codec baseline
+## 2. Reproduce the successful codec paths
 
-Create a fresh output directory. Run the existing exact-output route on this GPU and keep the complete JSON and stderr:
+Create a fresh output directory. Run the existing exact-output routes on this GPU in order, keeping the complete JSON, exit status, and stderr for each command:
 
 ```sh
 mkdir -p results/blackwell-api-hub
+python3 benchmarks/weighted_codec_arithmetic.py --mode gpu --output results/blackwell-api-hub/weighted-addition.json
+python3 benchmarks/codec_two_input_add.py --hardware --output results/blackwell-api-hub/two-input-addition.json
+python3 benchmarks/codec_feedback_pipeline.py --mode gpu --chains 4 --hops 3 --output results/blackwell-api-hub/feedback.json
+python3 benchmarks/codec_completion_chain.py --hardware --frames 128 --output results/blackwell-api-hub/handoffs.json
 python3 benchmarks/codec_xor_decode_encode.py --hardware --output results/blackwell-api-hub/xor.json
 python3 benchmarks/codec_reuse_concurrency.py --hardware --pairs 512 --repeats 8 --output results/blackwell-api-hub/reuse.json
-python3 benchmarks/codec_completion_chain.py --hardware --frames 128 --output results/blackwell-api-hub/handoffs.json
 ```
 
-Before calling any result a CPU offload, compare equal raw inputs and usable byte outputs with a direct CPU route. Count host plus child-process CPU time, including preparation, stream packing, FFmpeg, copies, output reconstruction, and orchestration. Repeat on this machine with its existing CUDA workload active; report CUDA throughput and productive CPU-worker throughput in the same window. If API Hub does not provide an unrelated CUDA workload, mark that comparison pending.
+These cover NVDEC arithmetic, two-input encoding, repeated encode/decode feedback, completion-driven parallel handoffs, raw-input-to-byte XOR, and reuse with a competing CPU worker. Each script checks exact output. The XOR script also reports total host-plus-child CPU time and a same-run direct Python baseline. If a command fails, keep its diagnostic and continue to the next independent path. Record successes separately; an available encoder or decoder does not imply the arithmetic route passed.
+
+Before calling any result a CPU offload, compare equal raw inputs and usable byte outputs with a direct CPU route. Count host plus child-process CPU time, including preparation, stream packing, FFmpeg, copies, output reconstruction, and orchestration. Repeat on this machine with its existing CUDA workload active; report CUDA throughput and productive CPU-worker throughput in the same window. If API Hub does not provide an unrelated CUDA workload, mark that comparison pending. The SEC2 exploration below is a separate follow-up after the successful paths are reproduced.
 
 ## 3. Probe SEC2 API feasibility
 
