@@ -27,6 +27,6 @@
   "verified_pixels_sha256": "199259220ee2feff70bc25bebd35df46a565475c21e276adb9d2b9e06a4d2b18",
   "preparation_ms": 1574.435,
   "decode_then_encode_wall_ms": 843.731,
-  "timing_scope": "preparation_ms covers CPU construction of the encoded input. decode_then_encode_wall_ms covers the NVDEC-to-NVENC FFmpeg transcode only. CPU verification decoding is outside that interval.",
+  "timing_scope": "This earlier benchmark's preparation_ms includes CPU construction of the encoded input AND the CPU XOR oracle/expected planes. The revised benchmark in result 15 separates the oracle and measures output byte reconstruction. decode_then_encode_wall_ms covers the NVDEC-to-NVENC FFmpeg transcode only. CPU verification decoding is outside that interval.",
   "exact_output_match": true
 }
