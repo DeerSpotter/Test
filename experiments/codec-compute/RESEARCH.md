@@ -1,6 +1,6 @@
 # Codec compute experiment log
 
-The project explores whether a GPU's fixed-function hardware can execute useful work while its programmable cores are available for other jobs. The tests use synthetic data. NVIDIA hardware runs used a Tesla T4 in Colab. The archived records include exactness checks, test inputs or their generators, and timing details.
+The project explores whether a GPU's fixed-function hardware can execute useful work while its programmable cores are available for other jobs. The verified arithmetic route uses NVDEC H.264 reconstruction and NVENC handoffs. Other engines are candidates for *supporting* tasks, not replacements for the codec math. The [pipeline roles and measurement plan](ARCHITECTURE.md) make this distinction explicit. The tests use synthetic data. NVIDIA hardware runs used a Tesla T4 in Colab. The archived records include exactness checks, test inputs or their generators, and timing details.
 
 ## What was measured
 
@@ -48,13 +48,13 @@ The [native probe](benchmarks/optical_flow_known_shift.cpp) used pairs of synthe
 
 The harness used CUDA driver calls for context, allocation, and transfers, and `nvOFExecute` for motion estimation. The test measured access and accuracy. Execution time and throughput with another CUDA workload are unmeasured.
 
-## Security engine arithmetic
+## Exploratory security XOR mapping
 
 The [XOR adapter](benchmarks/security_engine_xor.py) prepares each 16-byte left operand `A` as `AES_encrypt(A)` with a fixed public test key. It arranges each pair as `[B, AES_encrypt(A)]` in the CBC input. CBC decryption of the second block decrypts it to `A` and XORs that value with the preceding block `B`. The adapter extracts one XOR result per pair, and the other output block is unused. Prepared left operands can be reused with new right operands.
 
 The reference is direct bytewise CPU XOR. The software run verified 4,096 random pairs, then reused the prepared left side with all-zero and all-one right operands. All 12,288 results matched. This demonstrates bitwise XOR, equivalent to addition without carries, on synthetic operands. Each result needs two CBC input blocks and an AES preparation pass for new left operands.
 
-The Jetson mode requests `ecb-aes-tegra` for preparation and `cbc-aes-tegra` for evaluation by their explicit driver names. It requires an existing Jetson Linux configuration that exposes those drivers through AF_ALG. Newer upstream Linux restricts AF_ALG to software implementations. The workspace attempt exited with status 2 and reported `[Errno 1] Operation not permitted` at the socket operation. Jetson hardware execution, physical engine activity, and timing remain unverified.
+This isolated mapping explores AES behavior; it does not feed the verified NVDEC-to-NVENC route. The main proposed security role is to support that route with an independently required integrity or protection stage. The Jetson mode requests `ecb-aes-tegra` for preparation and `cbc-aes-tegra` for evaluation by their explicit driver names. It requires an existing Jetson Linux configuration that exposes those drivers through AF_ALG. Newer upstream Linux restricts AF_ALG to software implementations. The workspace attempt exited with status 2 and reported `[Errno 1] Operation not permitted` at the socket operation. A separate T4 probe failed to bind either Tegra driver with `[Errno 2] No such file or directory`. Jetson hardware execution, physical engine activity, and timing remain unverified.
 
 ## How to read the results
 
@@ -99,7 +99,7 @@ Use Python 3.10+ and the `openssl` executable for the security engine software p
 2. **Profile CUDA compute use in the codec path.** Test NVENC, NVDEC and copy operations with features such as look-ahead and adaptive quantization disabled. Measure any programmable-core activity attributable to the codec path.
 3. **Measure available media-engine capacity while CUDA is busy.** Compare an existing CUDA job alone and alongside codec work. Measure both throughputs in the same window, keeping the codec work on dedicated engines.
 4. **Schedule several queued jobs.** Use completion signals to advance whichever job is ready when multiple jobs compete for an engine. Measure dispatch overhead and verify ordering and results under backpressure.
-5. **Test exposed security hardware when available.** On Jetson Orin, verify the AES-CBC XOR adapter and compare preparation, reuse, and host overhead with direct CPU XOR. AES-GCM and SHA-256 are separate options for stream protection. The T4 SEC2 research identified firmware duties. Application-accessible crypto on that engine was not verified.
+5. **Test security as a supporting stage when hardware is exposed.** Keep the codec arithmetic fixture unchanged. If the workload requires integrity or protection, compare codec plus CPU hashing/authentication/encryption with codec plus exposed security hardware on the *same device*, including transfers and host overhead. Otherwise test whether hashing actually improves the prepared-stream reuse cache. The prior AES-CBC XOR mapping remains a separate proof, not the main pipeline. The T4 Tegra driver probe failed; application-accessible crypto on that engine was not verified. Follow the [measurement plan](ARCHITECTURE.md) before claiming an offload benefit.
 
 ## Technical references
 

@@ -1,0 +1,37 @@
+# Codec compute route and supporting engines
+
+## Goal and boundaries
+
+Use fixed-function hardware for useful work while CUDA runs a separate workload. The established arithmetic route is **NVENC input → NVDEC H.264 reconstruction arithmetic → NVENC result/feedback**. The host prepares codec instructions, submits jobs, and checks results. A security engine is a possible *supporting* worker for an existing cryptographic or integrity task. It is not required to replace NVDEC's arithmetic.
+
+| Stage | Intended job | Evidence and limit |
+|---|---|---|
+| Host | Prepare streams, queue work, process completions, and reconstruct bytes when needed | Preparation and output conversion remain significant CPU costs. Codec hardware has not been shown to select the next job without host orchestration. |
+| NVENC | Preserve structured operands and encode computed frames for another stage | The two-input and feedback tests verified exact outputs and intermediate handoffs. |
+| NVDEC | Perform supported operations during H.264 weighted prediction and reconstruction | Exact clipped additions and XOR bit-plane outputs were verified on a Tesla T4. The XOR byte-output path was much slower than direct Python XOR for its fixture. |
+| Security hardware, **if exposed** | Hash or authenticate a prepared stream, or decrypt required protected input and encrypt required output | The T4 Tegra driver probe did not expose this route. The OpenSSL XOR proof used the CPU; it is not evidence of GPU security-engine execution. |
+| CUDA | Run the user's existing, unrelated compute job concurrently | Codec interference with a busy CUDA job and physical engine activity remain unmeasured. CUDA API use for surfaces/copies is already present; codec-internal programmable-core activity must be profiled. |
+
+The security stage should be included only when the actual workload already needs its operation. For protected encoded input, the proposed order is **security decrypt/authenticate → NVDEC arithmetic → NVENC result → security authenticate/encrypt**. The codec cannot consume ciphertext as an ordinary H.264 stream. The first security operation is a dependency; output protection for one job may overlap codec processing of another. A hash of prepared streams could also help a reuse cache *if* hashing is cheaper than the current cache checks and a hardware implementation is available. These are designs to measure, not completed integrations. The host still connects stages and reacts to completions.
+
+### Tandem operation and success criterion
+
+Queue multiple independent jobs so that, after the pipeline fills, security work for one job can run while NVDEC and NVENC handle another. A serial dependency within one job still has to finish in order. The steady-state rate is limited by the slowest stage and by shared memory/transfer contention; adding another engine does not guarantee overlap. The host should submit each ready stage on completion and keep the queue bounded.
+
+Lower latency for a single XOR result is **not** the only success criterion. Even if the codec route takes longer than a CPU calculation, it could be useful if it frees enough CPU capacity for other tasks, increases whole-system completed jobs per second, and leaves the existing CUDA workload within an acceptable performance bound. Measure these together. In the current small XOR fixture, raw input to usable bytes took 2,756 ms on the T4 while direct Python XOR took 11.7 ms on the same runtime; the large CPU preparation and byte reconstruction costs make offload benefit unproven. A separate security stage must earn its added submission and transfer cost.
+
+## Same-device experiment
+
+1. Run the existing exact codec workload alone on a fixed GPU. Record raw-input-to-usable-output wall time, preparation, codec time, output conversion, host CPU time, transfers, and output hashes.
+2. Add a **required** security-side task with an optimized CPU implementation on the same input/output stream. Record codec throughput, crypto throughput, total wall and CPU time, and exact arithmetic plus cryptographic verification. If there is no real security requirement, use hashing for a measured reuse cache, including its lookup and miss costs.
+3. Only where a hardware API and driver actually expose a security engine, run the identical workload through that engine. Prove the selected driver/engine and account for submission, transfer, synchronization, and key-management costs. Compare it with step 2 **on the same device**. Never label OpenSSL software execution as security hardware.
+4. Run the existing CUDA workload alone, then with the codec route and each supported security configuration. Run independent jobs in tandem after the pipeline fills. Record completed jobs per second, each engine's throughput, GPU engine activity, host CPU busy time, available CPU capacity for a separate task, end-to-end latency, and exact results in the same measurement window. Determine whether the added stage improves whole-system throughput or frees useful CPU capacity without reducing the CUDA job unacceptably, even if an individual codec job has higher latency than direct CPU math.
+5. If those tests justify it, use completion events and bounded queues to dispatch the next ready codec/security job. Measure backpressure and dispatch overhead. The engines do not become an autonomous general-purpose scheduler merely because the pipeline is connected.
+
+The Tesla T4 supports the codec baseline, but our explicit Tegra crypto driver bind failed there. The CPU security control can run on the T4; a hardware crypto comparison requires a device exposing a suitable engine. Results from different GPUs should be reported separately rather than combined into a speedup ratio. NVIDIA's Jetson documentation lists AES and hash engines, but also warns of substantial security-engine submission overhead for common small requests.
+
+## Current evidence
+
+See [the experiment log](RESEARCH.md): addition and handoffs in results 03–11, the separate software security XOR proof in result 13, and exact NVDEC-to-NVENC XOR byte reconstruction and full-path timing in results 14–15. Optical flow in result 12 is another independent engine probe, not a stage in the verified codec computation.
+
+Relevant hardware and performance references: [NVIDIA NVDEC API](https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvdec-video-decoder-api-prog-guide/index.html), [NVIDIA NVENC API](https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvenc-video-encoder-api-prog-guide/index.html), [Jetson Orin security engine capabilities](https://docs.nvidia.com/jetson/archives/r36.5/DeveloperGuide/SO/JetsonOrinSeries.html#security-engine), and [NVIDIA's security-engine performance notes](https://docs.nvidia.com/jetson/archives/r36.5/DeveloperGuide/SD/Security/DiskEncryption.html#crypto-engine-performance-considerations).
